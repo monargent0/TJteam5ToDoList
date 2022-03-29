@@ -19,7 +19,6 @@ public class TLoginCommand implements TCommand {
 		String id = dao.login(userId, userPw);
 		
 		request.setAttribute("userId", id);
-		
 	
 	}
 

@@ -44,9 +44,4 @@ if (error=="error" ){
 		</table>
 </body>
 
-	case ("/login.do"):
-	command = new TLoginCommand();
-	command.execute(re,rs);
-	viewPage = "infocheck.jsp"
-	break;	
 </html>
