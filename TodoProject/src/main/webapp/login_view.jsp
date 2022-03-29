@@ -7,15 +7,11 @@
 <title>ToDoList Login</title>
 </head>
 <script type="text/javascript">
-<%
-String error = request.getParameter("error");
-if (error=="error" ){
-%>
-	alert("아이디를 확인해 주세요")	
-<%	
+let error ="";
+console.log(err)
+if (error === "error"){
+	alert("아이디를 확인해 주세요")
 }
-%>
-
 </script>
 <body>
 

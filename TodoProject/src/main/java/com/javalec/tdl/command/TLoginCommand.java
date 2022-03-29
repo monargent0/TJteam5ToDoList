@@ -2,9 +2,7 @@ package com.javalec.tdl.command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.websocket.Session;
 
-import com.javalec.tdl.dao.TDao;
 import com.javalec.tdl.dao.TDaoC;
 
 public class TLoginCommand implements TCommand {
@@ -17,6 +15,7 @@ public class TLoginCommand implements TCommand {
 	
 		TDaoC dao =new TDaoC();
 		String id = dao.login(userId, userPw);
+		System.out.println(id);
 		
 		request.setAttribute("userId", id);
 	

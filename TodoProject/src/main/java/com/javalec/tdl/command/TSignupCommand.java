@@ -3,7 +3,6 @@ package com.javalec.tdl.command;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.javalec.tdl.dao.TDao;
 import com.javalec.tdl.dao.TDaoC;
 
 public class TSignupCommand implements TCommand {

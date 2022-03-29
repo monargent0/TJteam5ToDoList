@@ -4,14 +4,15 @@
 <%
 	request.setCharacterEncoding("utf-8");
 
-	String id = request.getParameter("userId");
-	if (id.isEmpty()){
-		String error = "error";
-		request.setAttribute("error", error);
-		response.sendRedirect("login_view.jsp");
+	Object id = request.getAttribute("userId");
+	
+	if (id == null){
+		RequestDispatcher rd = request.getRequestDispatcher("login_view.jsp?error=error");
+		rd.forward(request, response);
+		
 	}else{
 		session.setAttribute("userId",id);
-		response.sendRedirect("list_view.jsp?userId="+id);
+		response.sendRedirect("list_view.jsp");
 	}
 	
 %>
