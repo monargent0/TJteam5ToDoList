@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+import javax.websocket.Session;
 
 import com.javalec.tdl.dto.TDto;
 
@@ -102,11 +103,12 @@ public class TDaoDT {
 		// drawup table
 		try {
 			connection = dataSource.getConnection();
-			String queryB = "insert into drawup (modifyDate, todoStatus) values (now(),?)";
+			String queryB = "insert into drawup (modifyDate, todoStatus, customer_userId) values (now(),?,?)";
 			
 			
 			preparedStatement = connection.prepareStatement(queryB);
 			preparedStatement.setString(1, todoStatus);
+			preparedStatement.setString(2, );
 			
 			preparedStatement.executeUpdate();
 		} 
