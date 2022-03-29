@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.javalec.tdl.command.TCommand;
-import com.javalec.tdl.command.TListCommand;
 
 /**
  * Servlet implementation class TFrontController
@@ -53,13 +52,8 @@ public class TFrontController extends HttpServlet {
 		String domain = uri.substring(comPath.length());
 		
 		switch (domain) {
-		
 		case("/list.do"):
-			command = new TListCommand();
-			command.excute(request, response);
-			viewPage = "list_view.jsp";
 			break;
-		case("/"):
 		
 		}
 		
