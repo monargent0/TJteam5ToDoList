@@ -58,11 +58,11 @@ public class TFrontController extends HttpServlet {
 		
 		switch (domain) {
 			// list
-			case("/list.do"):
-				command = new TListCommand();
-				command.execute(request, response);
-				viewPage = "list_view.jsp";
-				break;
+//			case("/list.do"):
+//				command = new TListCommand();
+//				command.execute(request, response);
+//				viewPage = "list_view.jsp";
+//				break;
 			// 가입하기
 //			case("/signup.do") :
 //				command = new TSignupCommand();
