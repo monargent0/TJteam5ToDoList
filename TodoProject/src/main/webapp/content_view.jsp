@@ -11,7 +11,7 @@
 	<table border="0">
 		<form action="modify.do" method="post">
 				<tr>
-				<td><input type="text" name="listcode" size="5" value="${content_view.listcode }" readonly="readonly"></td>
+				<td><input type="text" name="listCode" size="5" value="${content_view.listCode }" readonly="readonly"></td>
 				</tr>							
 				<tr>
 					<input type="text" name="todoContent" size="50">
