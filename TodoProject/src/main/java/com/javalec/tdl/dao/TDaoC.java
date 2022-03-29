@@ -26,18 +26,18 @@ public class TDaoC {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
-		String userID = null;
+		String iD = null;
 		
 		try {
 			connection = dataSource.getConnection();
-			String query = "select userId from customer where userId = ? , userPw = ?";
+			String query = "select userId from customer where userId = ? and userPw = ?";
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setString(1, userId);
 			preparedStatement.setString(2, userPw);
 			resultSet = preparedStatement.executeQuery();
 			
 			if(resultSet.next()) {
-				userID = resultSet.getString("userId");
+				iD = resultSet.getString("userId");
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -50,7 +50,7 @@ public class TDaoC {
 					e.printStackTrace();
 				}
 		} //finally
-		return userID;
+		return iD;
 	} // login 
 	
 	// sign
