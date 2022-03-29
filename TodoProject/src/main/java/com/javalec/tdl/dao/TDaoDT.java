@@ -74,36 +74,55 @@ public class TDaoDT {
 	public void write(String todoContent, String dDay, String importance, String todoStatus) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-		
-		try {
+		// todo table
+		try { 
 			connection = dataSource.getConnection();
-			String queryA = "insert into todo (todoContent, dDay, importance) values (?,?,?);";
-			String queryB = "insert into drawup (modifyDate, todoStatus) values (now(),?);";
+			String queryA = "insert into todo (todoContent, dDay, importance) values (?,?,?)";
 			
 			
-			preparedStatement = connection.prepareStatement(queryA+queryB);
+			preparedStatement = connection.prepareStatement(queryA);
 			preparedStatement.setString(1, todoContent);
 			preparedStatement.setString(2, dDay);
 			preparedStatement.setString(3, importance);
-			preparedStatement.setString(4, todoStatus);
 			
 			preparedStatement.executeUpdate();
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-		// source가 분리되어 있기 때문에, 정리를 해줘야한다. 문제가 있든 없든 불러오기
 		finally {
 			try {
-				// 각 data가 없을때..? 
 				if(preparedStatement != null) preparedStatement.close();
 				if(connection != null) connection.close();
 			} 
 			catch (Exception e) {
 				e.printStackTrace();
 			}
+		} // finally DB 메모리 정리
+		// drawup table
+		try {
+			connection = dataSource.getConnection();
+			String queryB = "insert into drawup (modifyDate, todoStatus) values (now(),?)";
+			
+			
+			preparedStatement = connection.prepareStatement(queryB);
+			preparedStatement.setString(1, todoStatus);
+			
+			preparedStatement.executeUpdate();
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
 		}
-	}
+		finally {
+			try {
+				if(preparedStatement != null) preparedStatement.close();
+				if(connection != null) connection.close();
+			} 
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+		} // fin
+	} // write
 	
 	public void modify(int listCode, String todoContent, String dDay, String importance, String todoStatus) {
 		
