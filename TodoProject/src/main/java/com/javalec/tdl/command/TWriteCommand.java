@@ -1,7 +1,5 @@
 package com.javalec.tdl.command;
 
-import java.util.Date;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -9,17 +7,14 @@ import com.javalec.tdl.dao.TDaoDT;
 
 public class TWriteCommand implements TCommand {
 
-	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-
+	public void execute (HttpServletRequest request, HttpServletResponse response) {
+		
 		String todoContent = request.getParameter("todoContent");
-		Date dDay = new Date();
-		String dDays = dDay.toString();
-		String importance = request.getParameter("importance");
+		String dDay = request.getParameter("dDay");
+		String importance = request.getParameter("important");
+		String status = request.getParameter("status");
 		
 		TDaoDT dao = new TDaoDT();
-		dao.write(todoContent, dDays, importance, importance);
+		dao.write(todoContent, dDay, importance, status);
 	}
-
 }
