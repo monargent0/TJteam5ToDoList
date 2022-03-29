@@ -3,7 +3,7 @@ package com.javalec.tdl.command;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.javalec.tdl.dao.TDao;
+import com.javalec.tdl.dao.TDaoC;
 
 public class TLogoutCommand implements TCommand {
 
@@ -14,7 +14,7 @@ public class TLogoutCommand implements TCommand {
 		String userId = request.getParameter("userId");
 		String userPw = request.getParameter("userPw");
 		
-		TDao dao =new TDao();
+		TDaoC dao =new TDaoC();
 		dao.logout(userId,userPw);
 		
 	}
