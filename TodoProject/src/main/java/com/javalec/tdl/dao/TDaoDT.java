@@ -21,7 +21,7 @@ public class TDaoDT {
 		
 		try {
 			Context context = new InitialContext();
-			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/192.168.150.230:3306/todolist");
+			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/todolist");
 		}
 		catch (Exception e) {
 			// TODO: handle exception
@@ -37,8 +37,8 @@ public class TDaoDT {
 		
 		try {
 			connection = dataSource.getConnection();
-			String queryA = "select t.listCode, t.todoContent, t.importance, t.dDay from customer c, ";
-			String queryB = "drawup d, todo t where d.userId = c.userid and d.listCode = t.listCode";
+			String queryA = "select t.listCode, t.todoContent, t.importance, t.dDay, d.todoStatus from customer c, ";
+			String queryB = "drawup d, todo t where d.customer_userId = c.userId and d.todo_listCode = t.listCode";
 			preparedStatement = connection.prepareStatement(queryA+queryB);
 			resultSet = preparedStatement.executeQuery();
 			
@@ -47,8 +47,9 @@ public class TDaoDT {
 				String todoContent = resultSet.getString("todoContent");
 				String importance = resultSet.getString("importance");
 				Date dDay = resultSet.getDate("dDay");
+				String todoStatus = resultSet.getString("todoStatus");
 				
-				TDto dto = new TDto(listCode, todoContent, dDay, importance);
+				TDto dto = new TDto(listCode, todoContent, importance, dDay, todoStatus);
 				dtos.add(dto);
 			}
 		} 
@@ -70,19 +71,55 @@ public class TDaoDT {
 		return dtos;
 	}
 	
-	public void write(String todoContent, String dDay, String importance, String status) {
+	public void write(String todoContent, String dDay, String importance, String todoStatus) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
 		try {
 			connection = dataSource.getConnection();
-			String queryA = "insert into todo (todoContent, dDay, importance) values (?, ?, ?);";
-			String queryB = "insert into drawup (modifyDate, status) values (now(), ?);";
+			String queryA = "insert into (t.todoContent, t.dDay, t.importance, d.modifyDate, d.todoStatus) ";
+			String queryB = "from todo t, customer c, drawup d ";
+			String queryC = "values (?, ?, ?, now(), ?)";
+			preparedStatement = connection.prepareStatement(queryA+queryB+queryC);
+			preparedStatement.setString(1, todoContent);
+			preparedStatement.setString(2, dDay);
+			preparedStatement.setString(3, importance);
+			preparedStatement.setString(4, todoStatus);
+			
+			preparedStatement.executeUpdate();
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		// source가 분리되어 있기 때문에, 정리를 해줘야한다. 문제가 있든 없든 불러오기
+		finally {
+			try {
+				// 각 data가 없을때..? 
+				if(preparedStatement != null) preparedStatement.close();
+				if(connection != null) connection.close();
+			} 
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void modify(int listCode, String todoContent, String dDay, String importance, String todoStatus) {
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		try {
+			connection = dataSource.getConnection();
+			String queryA = "update todo set todoContent = ?, dDay = ?, importance = ?,  where listCode = ?;";
+			String queryB = "update drawup set modifyDate = now(), status = ?,  where listCode = ?;";
 			preparedStatement = connection.prepareStatement(queryA+queryB);
 			preparedStatement.setString(1, todoContent);
 			preparedStatement.setString(2, dDay);
 			preparedStatement.setString(3, importance);
-			preparedStatement.setString(4, status);
+			preparedStatement.setInt(4, listCode);
+			preparedStatement.setString(5, todoStatus);
+			preparedStatement.setInt(6, listCode);
 			
 			preparedStatement.executeUpdate();
 		} 
