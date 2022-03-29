@@ -2,7 +2,7 @@ package com.javalec.tdl.homecontroller;
 
 import java.io.IOException;
 
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -52,15 +52,8 @@ public class TFrontController extends HttpServlet {
 		String comPath = request.getContextPath();
 		String domain = uri.substring(comPath.length());
 		
-		switch (domain) {
-		case("/list.do"):
-			break;
+	
 		
-		case("/resign.do "):
-			command = new TResignCommand();
-			command.execute(request,response);
-			viewPage = "deleteform.jsp";
-			break;
 		
 		}
 		

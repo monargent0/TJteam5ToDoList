@@ -20,7 +20,6 @@ public class TResignCommand implements TCommand {
 		
 		TDaoC dao = new TDaoC();
 		dao.resign(userId,userPw);
-		int result = dao.resign(userId, userPw);
 		
 }
 }

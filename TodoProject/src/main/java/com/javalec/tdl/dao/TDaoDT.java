@@ -21,7 +21,7 @@ public class TDaoDT {
 		
 		try {
 			Context context = new InitialContext();
-			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/192.168.150.230:3306/todolist");
+			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/todolist");
 		}
 		catch (Exception e) {
 			// TODO: handle exception
@@ -37,8 +37,8 @@ public class TDaoDT {
 		
 		try {
 			connection = dataSource.getConnection();
-			String queryA = "select t.listCode, t.todoContent, t.importance, t.dDay from customer c, ";
-			String queryB = "drawup d, todo t where d.userId = c.userid and d.listCode = t.listCode";
+			String queryA = "select t.listCode, t.todoContent, t.importance, t.dDay, d.todoStatus from customer c, ";
+			String queryB = "drawup d, todo t where d.customer_userId = c.userId and d.todo_listCode = t.listCode";
 			preparedStatement = connection.prepareStatement(queryA+queryB);
 			resultSet = preparedStatement.executeQuery();
 			
@@ -47,8 +47,9 @@ public class TDaoDT {
 				String todoContent = resultSet.getString("todoContent");
 				String importance = resultSet.getString("importance");
 				Date dDay = resultSet.getDate("dDay");
+				String todoStatus = resultSet.getString("todoStatus");
 				
-				TDto dto = new TDto(listCode, todoContent, dDay, importance);
+				TDto dto = new TDto(listCode, todoContent, importance, dDay, todoStatus);
 				dtos.add(dto);
 			}
 		} 
@@ -66,23 +67,79 @@ public class TDaoDT {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
-		}
+		} //finally
 		return dtos;
-	}
+	} // list
 	
-	public void write(String todoContent, String dDay, String importance, String status) {
+	public void write(String todoContent, String dDay, String importance, String todoStatus) {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		// todo table
+		try { 
+			connection = dataSource.getConnection();
+			String queryA = "insert into todo (todoContent, dDay, importance) values (?,?,?)";
+			
+			
+			preparedStatement = connection.prepareStatement(queryA);
+			preparedStatement.setString(1, todoContent);
+			preparedStatement.setString(2, dDay);
+			preparedStatement.setString(3, importance);
+			
+			preparedStatement.executeUpdate();
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			try {
+				if(preparedStatement != null) preparedStatement.close();
+				if(connection != null) connection.close();
+			} 
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+		} // finally DB 메모리 정리
+		// drawup table
+		try {
+			connection = dataSource.getConnection();
+			String queryB = "insert into drawup (modifyDate, todoStatus) values (now(),?)";
+			
+			
+			preparedStatement = connection.prepareStatement(queryB);
+			preparedStatement.setString(1, todoStatus);
+			
+			preparedStatement.executeUpdate();
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			try {
+				if(preparedStatement != null) preparedStatement.close();
+				if(connection != null) connection.close();
+			} 
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+		} // fin
+	} // write
+	
+	public void modify(int listCode, String todoContent, String dDay, String importance, String todoStatus) {
+		
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
 		try {
 			connection = dataSource.getConnection();
-			String queryA = "insert into todo (todoContent, dDay, importance) values (?, ?, ?);";
-			String queryB = "insert into drawup (modifyDate, status) values (now(), ?);";
+			String queryA = "update todo set todoContent = ?, dDay = ?, importance = ?,  where listCode = ?;";
+			String queryB = "update drawup set modifyDate = now(), status = ?,  where listCode = ?;";
 			preparedStatement = connection.prepareStatement(queryA+queryB);
 			preparedStatement.setString(1, todoContent);
 			preparedStatement.setString(2, dDay);
 			preparedStatement.setString(3, importance);
-			preparedStatement.setString(4, status);
+			preparedStatement.setInt(4, listCode);
+			preparedStatement.setString(5, todoStatus);
+			preparedStatement.setInt(6, listCode);
 			
 			preparedStatement.executeUpdate();
 		} 

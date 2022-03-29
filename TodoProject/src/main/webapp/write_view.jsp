@@ -7,25 +7,39 @@
 <title>Todo List ADD</title>
 </head>
 <body>
-	<h2>Todo List 작성 form</h2>
-		<table boder="0">
-			<form action="write.do" method="post">
+	<h2>ADD Todo List</h2>
+		<form action="write.do" method="get">
+			<table border="1">
 				<tr>
-					<td>할일 작성하기</td>
+					<td>TODO</td>
 					<td><input type="text" name="todoContent" size="50"></td>
 				</tr>
 				<tr>	
-					<td>목표시간</td>
-					<td><input type="text" name="dDay" size="20"></td>
+					<td>D-DAY</td>
+					<td><input type="date" name="dDay"></td>
 				</tr>
 				<tr>	
-					<td>중요도</td>
-					<td><input type="checkbox" name="importance" size="20"></td>
+					<td>IMPORTANCE</td>
+					<td><input type="checkbox" name="importance" value="important">중요</td>
+				</tr>
+				<tr hidden="">
+					<td>STATUS</td>
+					<td>
+						<select name="todoStatus">
+							<option value="complete">complete</option>
+							<option value="incomplete" selected="selected">incomplete</option>
+						</select>
+					</td>
 				</tr>
 				<tr>
-					<td colsapn="20"><input type="submit" value="돌아가기" formaction="list_view.do">&nbsp;<input type="submit" value="완료" fomaction="list_view.do">
+					<td colspan="2">
+					<input type="submit" value="완료">
+					</td>
 				</tr>
-			</form>	
-	</table>
+			</table>
+		</form><br>
+		<form action="list.do" method="post">
+			<input type="submit" value="Back to List">
+		</form>
 </body>
 </html>
