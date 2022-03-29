@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.javalec.tdl.command.TCommand;
+import com.javalec.tdl.command.TResignCommand;
 
 /**
  * Servlet implementation class TFrontController
@@ -55,7 +56,16 @@ public class TFrontController extends HttpServlet {
 		case("/list.do"):
 			break;
 		
+		case("/resign.do "):
+			command = new TResignCommand();
+			command.execute(request,response);
+			viewPage = "deleteform.jsp";
+			break;
+		
 		}
+		
+		
+		
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);
