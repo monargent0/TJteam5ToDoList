@@ -23,7 +23,7 @@
 					<td><input type="checkbox" name="importance" size="20"></td>
 				</tr>
 				<tr>
-					<td colsapn="20"><input type="submit" value="돌아가기" formaction="list_view.do">&nbsp;<input type="submit" value="완료" fomaction="list_view.do">
+					<td colspan="20"><input type="submit" value="돌아가기" formaction="list_view.do">&nbsp;<input type="submit" value="완료" fomaction="list_view.do">
 				</tr>
 			</form>	
 	</table>
