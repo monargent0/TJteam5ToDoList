@@ -5,7 +5,7 @@ import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.javalec.tdl.dao.TDao;
+import com.javalec.tdl.dao.TDaoDT;
 
 public class TWriteCommand implements TCommand {
 
@@ -18,8 +18,8 @@ public class TWriteCommand implements TCommand {
 		String dDays = dDay.toString();
 		String importance = request.getParameter("importance");
 		
-		TDao dao = new TDao();
-		dao.write(todoContent,dDays,importance);
+		TDaoDT dao = new TDaoDT();
+		dao.write(todoContent, dDays, importance, importance);
 	}
 
 }
