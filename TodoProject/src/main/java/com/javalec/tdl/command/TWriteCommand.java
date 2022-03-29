@@ -11,10 +11,10 @@ public class TWriteCommand implements TCommand {
 		
 		String todoContent = request.getParameter("todoContent");
 		String dDay = request.getParameter("dDay");
-		String importance = request.getParameter("important");
-		String status = request.getParameter("status");
+		String importance = request.getParameter("importance");
+		String todoStatus = request.getParameter("todoStatus");
 		
 		TDaoDT dao = new TDaoDT();
-		dao.write(todoContent, dDay, importance, status);
+		dao.write(todoContent, dDay, importance, todoStatus);
 	}
 }
