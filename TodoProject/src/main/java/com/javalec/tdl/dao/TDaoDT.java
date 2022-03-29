@@ -48,7 +48,7 @@ public class TDaoDT {
 				String importance = resultSet.getString("importance");
 				Date dDay = resultSet.getDate("dDay");
 				
-				TDto dto = new TDto(listCode, todoContent, dDay, importance);
+				TDto dto = new TDto(listCode, todoContent, importance, dDay);
 				dtos.add(dto);
 			}
 		} 
