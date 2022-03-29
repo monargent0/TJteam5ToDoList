@@ -80,32 +80,58 @@ public class TDaoC {
 		}// finally 메모리 정리 ; 이상 있거나 없거나 무조건 거친다.
 	} //sign up
 	
+
 	// resign
-	public void resign(String userId,String userPw) {
+	public int resign(String userId,String userPw) {
+		int result = -1;
+		
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
 		try {
+			//DB연결메서드 불러오기
 			connection = dataSource.getConnection(); // DB연결 끝
-			String query = "update customer set resignDate = now() where userId = ? , userPw = ?";
+			
+			//SQL & pstmt 생성
+			String query = "select userPw from customer where userId = ? ";
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setString(1, userId);
-			preparedStatement.setString(2, userPw);
-			
-			preparedStatement.executeUpdate();
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				if(preparedStatement != null) preparedStatement.close();
-				if(connection != null) connection.close();
-			}catch (Exception e) {
-				e.printStackTrace();
+			//실행 >rs 저장
+			ResultSet rs = null;
+			rs = preparedStatement.executeQuery();
+			//7-4. 데이터처리 : DB에 있는 회원인 경우 삭제, 아닌 경우 에러
+			if(rs.next()){
+				if(userPw.equals(rs.getString("userPw"))){
+					//비번일치하면 정보삭제 작업
+					// SQL 구문작성 & pstmt 생성
+					String query2 = "delete from itwill_member where id=?";
+					preparedStatement = connection.prepareStatement(query2);
+					preparedStatement.setString(1, userId);
+					preparedStatement.executeUpdate();
+					result = 1;
+					System.out.println("회원탈퇴에 성공하였습니다.");
+				}else{
+					result = 0;
+					System.out.println("입력 정보를 다시 확인해주세요.");
+				}
+			}else{
+				result = -1;
+				System.out.println("입력 정보를 다시 확인해주세요.");
 			}
-		}// finally 메모리 정리 ; 이상 있거나 없거나 무조건 거친다.
-	} //resign
-	
-	
-	
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally { //자원해제 
+				try {
+					if(preparedStatement !=null) preparedStatement.close();
+					if(connection != null) connection.close();
+ 			}catch (Exception e) {
+				e.printStackTrace();
+ 			}
+		}
+		return result;		
+	}//delete닫힘
 }
+
+			
+			
+
