@@ -16,8 +16,7 @@ public class TDeleteCommand implements TCommand {
 		
 		TDaoT daoT = new TDaoT();
 		daoT.delete(listCode);
-		
-		
+			
 	}
 	
 }
