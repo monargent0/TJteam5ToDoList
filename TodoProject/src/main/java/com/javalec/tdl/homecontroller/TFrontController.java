@@ -58,35 +58,35 @@ public class TFrontController extends HttpServlet {
 		
 		switch (domain) {
 			// list
-//			case("/list.do"):
-//				command = new TListCommand();
-//				command.execute(request, response);
-//				viewPage = "list_view.jsp";
-//				break;
+			case("/list.do"):
+				command = new TListCommand();
+				command.execute(request, response);
+				viewPage = "list_view.jsp";
+				break;
 			// 가입하기
-//			case("/signup.do") :
-//				command = new TSignupCommand();
-//				command.execute(request, response);
-//				viewPage = "login_view.jsp";
-//				break;
-//			//login
-//			case ("/login.do"):
-//				command = new TLoginCommand();
-//				command.execute(request, response);
-//				viewPage = "infocheck.jsp";
-//				break;
+			case("/signup.do") :
+				command = new TSignupCommand();
+				command.execute(request, response);
+				viewPage = "login_view.jsp";
+				break;
+			//login
+			case ("/login.do"):
+				command = new TLoginCommand();
+				command.execute(request, response);
+				viewPage = "infocheck.jsp";
+				break;
 			// write
 			case("/write.do"):
 				command = new TWriteCommand();
 				command.execute(request, response);
 				viewPage = "list.do";
 				break;
-//			// 삭제하기
-//			case("/delete.do"):
-//				command = new TDeleteCommand();
-//				command.execute(request, response);
-//				viewPage = "list.do";
-//				break;	
+			// 삭제하기
+			case("/delete.do"):
+				command = new TDeleteCommand();
+				command.execute(request, response);
+				viewPage = "list.do";
+				break;	
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
