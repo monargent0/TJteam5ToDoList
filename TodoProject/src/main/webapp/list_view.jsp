@@ -22,14 +22,14 @@
 				<th>STATUS</th>
 			</tr>
 				<tr>
-					<td>${dto.listcode }</td>
-					<td><a href="content_view.do?listcode=${dto.todocontent}">${dto.todocontent }</a></td>
+					<td>${dto.listCode }</td>
+					<td><a href="content_view.do?listcode=${dto.todoContent}">${dto.todoContent }</a></td>
 					<td>${dto.importance }</td>
-					<td>${dto.dday }</td>
+					<td>${dto.dDay }</td>
 				</tr>	
 		</table>
 		<tr>
-			<td colspan="20"><input type="submit" value="+">
+			<td colspan="20"><input type="submit" value="+" formaction="write_view.jsp">
 		</tr>
 </body>
 </html>
