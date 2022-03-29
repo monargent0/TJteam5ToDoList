@@ -3,7 +3,8 @@ package com.javalec.tdl.command;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.javalec.tdl.dao.TDao;
+
+import com.javalec.tdl.dao.TDaoC;
 
 public class TResignCommand implements TCommand {
 
@@ -13,10 +14,9 @@ public class TResignCommand implements TCommand {
 
 		String userId = request.getParameter("userId");
 		String userPw = request.getParameter("userPw");
-		String userName = request.getParameter("userName");
 		
-		TDao dao = new TDao();
-		dao.resign(userId,userPw,userName);
+		TDaoC dao = new TDaoC();
+		dao.resign(userId, userPw);
 	}
 	
 
