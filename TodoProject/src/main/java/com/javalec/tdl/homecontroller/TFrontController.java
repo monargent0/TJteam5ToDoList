@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.javalec.tdl.command.TCommand;
 import com.javalec.tdl.command.TDeleteCommand;
@@ -49,6 +50,7 @@ public class TFrontController extends HttpServlet {
 	
 	public void actionDo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		HttpSession session = request.getSession(true);
 		
 		String viewPage = null;
 		TCommand command = null;
