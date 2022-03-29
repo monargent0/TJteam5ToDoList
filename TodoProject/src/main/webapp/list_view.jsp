@@ -35,7 +35,7 @@
 			</td>
 		</tr>
 	</table>
-	<form action="modify.do?listCode=${dto.listCode }">
+	<form action="#" method="get">
 		<table border="1">
 			<tr>
 				<th>TODO</th>
@@ -43,6 +43,7 @@
 				<th>IMPORTANCE</th>
 				<th>STATUS</th>
 			</tr>
+			<c:forEach items="${list}" var="dto">
 				<tr>
 					<td align="center">
 					<input type="submit" value="${dto.todoContent }" name="todoContent">
@@ -57,6 +58,7 @@
 					<input type="submit" value="${dto.todoStatus }" name="todoStatus">
 					</td>
 				</tr>	
+			</c:forEach>
 		</table>
 	</form>
 	<form action="write_view.jsp" method="get">

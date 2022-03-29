@@ -67,9 +67,9 @@ public class TDaoDT {
 				// TODO: handle exception
 				e.printStackTrace();
 			}
-		}
+		} //finally
 		return dtos;
-	}
+	} // list
 	
 	public void write(String todoContent, String dDay, String importance, String todoStatus) {
 		Connection connection = null;
@@ -77,10 +77,11 @@ public class TDaoDT {
 		
 		try {
 			connection = dataSource.getConnection();
-			String queryA = "insert into (t.todoContent, t.dDay, t.importance, d.modifyDate, d.todoStatus) ";
-			String queryB = "from todo t, customer c, drawup d ";
-			String queryC = "values (?, ?, ?, now(), ?)";
-			preparedStatement = connection.prepareStatement(queryA+queryB+queryC);
+			String queryA = "insert into todo (todoContent, dDay, importance) values (?,?,?);";
+			String queryB = "insert into drawup (modifyDate, todoStatus) values (now(),?);";
+			
+			
+			preparedStatement = connection.prepareStatement(queryA+queryB);
 			preparedStatement.setString(1, todoContent);
 			preparedStatement.setString(2, dDay);
 			preparedStatement.setString(3, importance);

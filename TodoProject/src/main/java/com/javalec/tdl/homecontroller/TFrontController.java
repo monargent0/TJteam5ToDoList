@@ -87,6 +87,7 @@ public class TFrontController extends HttpServlet {
 				command.execute(request, response);
 				viewPage = "list.do";
 				break;	
+			
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
