@@ -4,10 +4,11 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-public class TDao {
+public class TDaoC {
+	
 	DataSource dataSource;
 	
-	public TDao() {
+	public TDaoC() {
 		try {
 			Context context = new InitialContext();
 			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/todolist");
@@ -15,10 +16,4 @@ public class TDao {
 			e.printStackTrace();
 		}
 	} //Constructor
-	
-	// list
-	
-	// write
-	
-	
 }
