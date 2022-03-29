@@ -4,20 +4,49 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>welcome to ToDoList</title>
+<title>ToDoList Login</title>
 </head>
+<script type="text/javascript">
+<%
+String error = request.getParameter("error");
+if (error=="error" ){
+%>
+	alert("아이디를 확인해 주세요")	
+<%	
+}
+%>
+
+</script>
 <body>
+
 		<h1>Welcome to ToDoList</h1>	
-	<form action="list_view.jsp" method="post">
- 	 email : <input type = "text" name = "userId"><br>
- 	 password : <input type="password" name = "userPw"><br>
- 	 <input type="submit" value="로그인"><br>
- 		 <table>
- 	 	<tr>
- 	 	  <a herf = "signup_view.jsp">회원가입</a>
- 	 	</tr>
- 		 </table>
-	</form>
+		
+		<table>
+			<tr>
+			<form action="login.do" method="post">
+				<td> ID : </td>
+				<td> <input type = "text" name = "userId"> </td>
+			</tr>
+			<tr>
+				<td> password : </td>
+				<td> <input type="password" name = "userPw"> </td>
+			</tr>
+			<tr>
+				<td> <input type="submit" value="로그인"> </td>
+			</form>
+			</tr>
+	 	 	<tr>
+ 	 	 		<td><form action="signup_view.jsp">
+ 	 	 			<input type="submit" value="회원가입"> 
+ 	 	 		</form> 
+ 	 	 		</td>
+	 	 	</tr>
+		</table>
 </body>
 
+	case ("/login.do"):
+	command = new TLoginCommand();
+	command.execute(re,rs);
+	viewPage = "infocheck.jsp"
+	break;	
 </html>
