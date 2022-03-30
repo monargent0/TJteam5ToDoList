@@ -12,7 +12,8 @@
 		
 	}else{
 		session.setAttribute("userId",id);
-		response.sendRedirect("/TodoProject/list.do");
+		RequestDispatcher rds = request.getRequestDispatcher("/list.do");
+		rds.forward(request, response);
 	}
 	
 %>
