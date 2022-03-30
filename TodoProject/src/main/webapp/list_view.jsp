@@ -36,17 +36,12 @@
 <div class="list">
 
 	<h1>Todo-List</h1>
-	<form action="list.do" method="get">
-	<table>
-		<tr>
-			<td colspan="5"><input type="button" name="listSelect" value="ALL">&nbsp;</td>
-			<td><input type="button" name="listSelect" value="COMPLETE">&nbsp;</td>
-			<td><input type="button" name="listSelect" value="INCOMPLETE">&nbsp;</td>
-		</tr>
-	</table>
-	</form>
+	
 	<form method="get">
 		<table >
+			<tr>
+				<td colspan="4" align="right"> <a href="mypage.do">My Page</a> <a href="logout.jsp">Logout</a> </td>
+			</tr>
 			<tr>
 				<th hidden="">userId</th>
 				<th hidden="">listCode</th>
@@ -56,7 +51,7 @@
 				<th>ACTION</th>
 				
 			</tr>
-			<c:forEach items="${list }" var="dto">
+			<c:forEach items="${list }" var="dto" varStatus="status">
 			<tr>
 				<td align="center" hidden="">
 				<input type="text" value="${dto.userId }" name="userId" size="10" readonly="readonly" style="text-align:center; ">
@@ -71,7 +66,7 @@
 				<input type="date" value="${dto.dDay }" name="dDay">
 				</td>
 				<td align="center">
-				<input type="text" value="${dto.todoStatus }" name="todoStatus">
+				<input type="text" value="${dto.todoStatus }" name="todoStatus" >
 				</td>
 				<td align="center">
 				<input type="submit" value="수정" formaction="modify.do">
