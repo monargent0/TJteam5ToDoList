@@ -38,6 +38,9 @@
 	<h1>Todo-List</h1>
 		<table >
 			<tr>
+				<td colspan="4" align="right"> <a href="mypage.do">My Page</a> <a href="logout.jsp">Logout</a> </td>
+			</tr>
+			<tr>
 				<th hidden="">userId</th>
 				<th hidden="">listCode</th>
 				<th>TODO</th>
