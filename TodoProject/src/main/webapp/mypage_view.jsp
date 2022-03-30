@@ -25,8 +25,8 @@
 	<h3>닉네임 : <%=userName %></h3>
 	
 	<form>
-		<input type="button" value="회원탈퇴" class="btn" onclick="location='user_delete.jsp">
 		<input type="button" value="로그아웃" class="btn" onclick="location.href='.logout.do'">
+		<input type="button" value="회원탈퇴" class="btn" onclick="location='user_delete.jsp">
 	</form>
 
 
