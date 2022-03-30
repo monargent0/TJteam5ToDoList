@@ -8,13 +8,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 
 import com.javalec.tdl.command.TCommand;
 import com.javalec.tdl.command.TDeleteCommand;
 import com.javalec.tdl.command.TListCommand;
 import com.javalec.tdl.command.TLoginCommand;
+import com.javalec.tdl.command.TModifyCommand;
 import com.javalec.tdl.command.TSignupCommand;
 import com.javalec.tdl.command.TWriteCommand;
 
@@ -50,8 +50,6 @@ public class TFrontController extends HttpServlet {
 	
 	public void actionDo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		HttpSession session = request.getSession();
-		
 		
 		String viewPage = null;
 		TCommand command = null;
@@ -60,31 +58,37 @@ public class TFrontController extends HttpServlet {
 		String domain = uri.substring(comPath.length());
 		
 		switch (domain) {
+			//login
+			case ("/login.do"):
+				command = new TLoginCommand();
+			command.execute(request, response);
+			viewPage = "infocheck.jsp";
+			break;
+			// signUp
+			case("/signup.do") :
+				command = new TSignupCommand();
+			command.execute(request, response);
+			viewPage = "login_view.jsp";
+			break;
 			// list
 			case("/list.do"):
 				command = new TListCommand();
 				command.execute(request, response);
 				viewPage = "list_view.jsp";
 				break;
-			// 가입하기
-			case("/signup.do") :
-				command = new TSignupCommand();
-				command.execute(request, response);
-				viewPage = "login_view.jsp";
-				break;
-			//login
-			case ("/login.do"):
-				command = new TLoginCommand();
-				command.execute(request, response);
-				viewPage = "infocheck.jsp";
-				break;
-			// 작성하기
+			// write
 			case("/write.do"):
 				command = new TWriteCommand();
 				command.execute(request, response);
 				viewPage = "list.do";
 				break;
-			// 삭제하기
+			// modify
+			case("/modify.do"):
+				command = new TModifyCommand();
+				command.execute(request, response);
+				viewPage = "list.do";
+				break;
+			// delete
 			case("/delete.do"):
 				command = new TDeleteCommand();
 				command.execute(request, response);
@@ -112,8 +116,6 @@ public class TFrontController extends HttpServlet {
 //				 viewPage = "resign.jsp";
 //				 break;
 		}
-		
-		
 		
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

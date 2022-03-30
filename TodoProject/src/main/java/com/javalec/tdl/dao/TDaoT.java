@@ -50,7 +50,7 @@ public class TDaoT {
 			}// finally 메모리 정리 ; 이상 있거나 없거나 무조건 거친다.
 	} // delete
 	
-	public ArrayList<TDto> list(String customerId) {
+	public ArrayList<TDto> list(String loginId) {
 		ArrayList<TDto> dtos = new ArrayList<TDto>();
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -59,9 +59,10 @@ public class TDaoT {
 		try {
 			connection = dataSource.getConnection();
 			String queryA = "select c.userId, t.listCode, t.todoContent, t.dDay, t.todoStatus from customer c, ";
-			String queryB = "todos t where t.customer_userId = c.userId and t.customer_userId = ?";
+			String queryB = "todos t where t.customer_userId = c.userId and c.userId = ?";
 			preparedStatement = connection.prepareStatement(queryA+queryB);
-			preparedStatement.setString(1, customerId);
+			preparedStatement.setString(1, loginId);
+			
 			resultSet = preparedStatement.executeQuery();
 			
 			while (resultSet.next()) {
@@ -74,7 +75,6 @@ public class TDaoT {
 				TDto dto = new TDto(userId, listCode, todoContent, dDay, todoStatus);	//, importance);
 				dtos.add(dto);
 			}
-			preparedStatement.executeUpdate();
 		} 
 		catch (Exception e) {
 			// TODO: handle exception
@@ -94,20 +94,19 @@ public class TDaoT {
 		return dtos;
 	}
 	
-	public void write(String customer_userId, String todoContent, String dDay, String importance, String todoStatus) {
+	public void write(String customer_userId, String todoContent, String dDay, String todoStatus) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
 		try {
 			connection = dataSource.getConnection();
-			String queryA = "insert into todos (customer_userId, todoContent, dDay, importance, todoStatus) ";
-			String queryB = "values (?, ?, ?, ?, ?)";
+			String queryA = "insert into todos (customer_userId, todoContent, dDay, todoStatus) ";
+			String queryB = "values (?, ?, ?, ?)";
 			preparedStatement = connection.prepareStatement(queryA+queryB);
 			preparedStatement.setString(1, customer_userId);
 			preparedStatement.setString(2, todoContent);
 			preparedStatement.setString(3, dDay);
-			preparedStatement.setString(4, importance);
-			preparedStatement.setString(5, todoStatus);
+			preparedStatement.setString(4, todoStatus);
 			
 			preparedStatement.executeUpdate();
 		} 
@@ -127,20 +126,19 @@ public class TDaoT {
 		}
 	}
 	
-	public void modify(int listCode, String todoContent, String dDay, String importance, String todoStatus) {
+	public void modify(int listCode, String todoContent, String dDay, String todoStatus) {
 		
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
 		try {
 			connection = dataSource.getConnection();
-			String query = "update todos set todoContent = ?, dDay = ?, importance = ?, todoStatus = ?, modifyDate = now() where listCode = ?;";
+			String query = "update todos set todoContent = ?, dDay = ?, todoStatus = ?, modifyDate = now() where listCode = ?;";
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setString(1, todoContent);
 			preparedStatement.setString(2, dDay);
-			preparedStatement.setString(3, importance);
-			preparedStatement.setString(4, todoStatus);
-			preparedStatement.setInt(5, listCode);
+			preparedStatement.setString(3, todoStatus);
+			preparedStatement.setInt(4, listCode);
 			
 			preparedStatement.executeUpdate();
 		} 
