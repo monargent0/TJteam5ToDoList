@@ -3,10 +3,14 @@ package com.javalec.tdl.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+
+import com.javalec.tdl.dto.TDto;
+import com.javalec.tdl.dto.TDtoM;
 
 public class TDaoC {
 	DataSource dataSource;
@@ -80,76 +84,75 @@ public class TDaoC {
 		}// finally 메모리 정리 ; 이상 있거나 없거나 무조건 거친다.
 	} //sign up
 	
-
-	// resign
-	public int resign(String userId) {
-		int result = 0;
+	//mypage
+	public ArrayList<TDtoM> mypage(String userId) {
+		ArrayList<TDtoM> dtos = new ArrayList<TDtoM>();
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-		
+		ResultSet resultSet = null;
+			
 		try {
-			//DB연결메서드 불러오기
-			connection = dataSource.getConnection(); 
-			//pstmt 생성
-			String query = "delete from customer where userId = ?";
+			connection = dataSource.getConnection();
+			String query = "select userId, userName from customer where userId = ? ";
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setString(1, userId);
-			//실행 
-			result = preparedStatement.executeUpdate();
-		} catch (Exception e) {
+			
+			resultSet = preparedStatement.executeQuery();
+			
+			if (resultSet.next()) {
+				String id = resultSet.getString("userId");
+				String name = resultSet.getString("userName");
+				
+				TDtoM dto = new TDtoM(id, name);
+				dtos.add(dto);
+			}
+				
+				
+		}catch(Exception e){
 			e.printStackTrace();
-		} finally { 
+		}finally {
 				try {
-					if(preparedStatement !=null) preparedStatement.close();
+					if(resultSet != null) resultSet.close();
+					if(preparedStatement != null) preparedStatement.close();
 					if(connection != null) connection.close();
- 			}catch (Exception e) {
+				}catch (Exception e) {
+					e.printStackTrace();
+				}
+			} 
+		return dtos;
+		} 
+
+	
+	
+		// resign
+		public int resign(String userId) {
+			int result = 0;
+			Connection connection = null;
+			PreparedStatement preparedStatement = null;
+			
+			try {
+				//DB연결메서드 불러오기
+				connection = dataSource.getConnection(); 
+				//pstmt 생성
+				String query = "delete from customer where userId = ?";
+				preparedStatement = connection.prepareStatement(query);
+				preparedStatement.setString(1, userId);
+				//실행 
+				result = preparedStatement.executeUpdate();
+			} catch (Exception e) {
 				e.printStackTrace();
- 			}
-		}
-		return result;
-	}//delete닫힘
+			} finally { 
+					try {
+						if(preparedStatement !=null) preparedStatement.close();
+						if(connection != null) connection.close();
+	 			}catch (Exception e) {
+					e.printStackTrace();
+	 			}
+			}
+			return result;
+		}//delete닫힘
 
-public int userCheck(String id, String pw) {
-	int resultNum = 0;
-
-	String sql = "SELECT userPw FROM customer WHERE userId=?";
-
-	Connection conn = null;
-	PreparedStatement pstmt = null;
-	ResultSet rs = null;
-
-	try {
-		conn = dataSource.getConnection();
-		pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, id);
-
-		rs = pstmt.executeQuery();
-
-		if(rs.next()) {
-			String dbPw = rs.getString("user_pw");
-			if(dbPw.equals(pw)) { //로그인에 성공한 경우
-				resultNum = 1;
-			} else { //비밀번호가 틀렸을 경우
-				resultNum = 0;
-			}				
-		} else { //아이디가 존재하지 않는 경우
-			resultNum = -1;
-		}
-
-	} catch (Exception e) {
-		e.printStackTrace();
-	} finally { 
-		try {
-			if( pstmt!=null)  pstmt.close();
-			if(conn != null) conn.close();
-		}catch (Exception e) {
-		e.printStackTrace();
-		}
-	}
-		return resultNum;
-
-}
-
+	
 }
 
 			

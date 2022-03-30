@@ -14,7 +14,6 @@ import com.javalec.tdl.command.TCommand;
 import com.javalec.tdl.command.TDeleteCommand;
 import com.javalec.tdl.command.TListCommand;
 import com.javalec.tdl.command.TLoginCommand;
-import com.javalec.tdl.command.TLogoutCommand;
 import com.javalec.tdl.command.TModifyCommand;
 import com.javalec.tdl.command.TMypageCommand;
 import com.javalec.tdl.command.TResignCommand;
@@ -64,33 +63,38 @@ public class TFrontController extends HttpServlet {
 			//login
 			case ("/login.do"):
 				command = new TLoginCommand();
-			command.execute(request, response);
-			viewPage = "infocheck.jsp";
+				command.execute(request, response);
+				viewPage = "infocheck.jsp";
 			break;
+			
 			// signUp
 			case("/signup.do") :
 				command = new TSignupCommand();
-			command.execute(request, response);
-			viewPage = "login_view.jsp";
+				command.execute(request, response);
+				viewPage = "login_view.jsp";
 			break;
+			
 			// list
 			case("/list.do"):
 				command = new TListCommand();
 				command.execute(request, response);
 				viewPage = "list_view.jsp";
 				break;
+				
 			// write
 			case("/write.do"):
 				command = new TWriteCommand();
 				command.execute(request, response);
 				viewPage = "list.do";
 				break;
+				
 			// modify
 			case("/modify.do"):
 				command = new TModifyCommand();
 				command.execute(request, response);
 				viewPage = "list.do";
 				break;
+				
 			// delete
 			case("/delete.do"):
 				command = new TDeleteCommand();
@@ -98,25 +102,18 @@ public class TFrontController extends HttpServlet {
 				viewPage = "list.do";
 				break;	
 
-			//mypage
+			//my page
 			case("/mypage.do"):
 				command = new TMypageCommand();
 				command.execute(request, response);
 				viewPage = "mypage_view.jsp";
 				break;
 	
-			//logout
-			case("/logout.do"):
-				command = new TLogoutCommand();
-				command.execute(request, response);
-				viewPage = "login_view.jsp";
-				break;
-	
 			//resign
 			case("/resign.do"):
 				 command = new TResignCommand();
 				 command.execute(request, response);
-				 viewPage = "resign.jsp";
+				 viewPage = "user_delete_ok.jsp";
 				 break;
 		}
 		
