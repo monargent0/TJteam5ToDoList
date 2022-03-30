@@ -73,11 +73,15 @@
 			</tr>
 			</form>
 			</c:forEach>
+			<tr>
+				<td >
+				<form>
+					<input type="text" name="userId" value="<%=session.getAttribute("userId") %>" hidden="">
+					<input type="submit" value="+" formaction="write_view.jsp?userId">
+				</form>
+				</td>
+			</tr>
 		</table>
-		<form>
-			<input type="text" name="userId" value="<%=session.getAttribute("userId") %>" hidden="">
-			<input type="submit" value="+" formaction="write_view.jsp?userId">
-		</form>
 </div>
 </body>
 </html>

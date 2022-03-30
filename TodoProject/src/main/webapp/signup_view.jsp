@@ -5,6 +5,27 @@
 <head>
 <meta charset="UTF-8">
 <title> TodoList 회원가입 </title>
+<style>
+	  table {
+        border-collapse: collapse;
+        width: auto;
+        height: auto;
+      }
+      
+      table, th, td {
+        padding: 5px;
+       }
+      
+       
+      .sign{
+      	position: absolute;
+      	top : 50%;
+      	left : 50%;
+      	transform : translate(-50%,-50%);
+      }
+     
+    
+    </style>
 </head>
 <script type="text/javascript">
 function checkPw()	{
@@ -22,7 +43,8 @@ function checkPw()	{
 </script>
 
 <body>
-	
+	<div class="sign">
+
 	<h1>환영합니다!</h1>
 	<form action="signup.do" method="post" name="signup" >
 		<table>
@@ -35,7 +57,7 @@ function checkPw()	{
 				<td> <input type = "password" name ="userPw"> </td>
 			</tr>
 			<tr>
-				<td> 비밀번호 확인을 위해 다시 한번 입력해주세요. </td>
+				<td  align="center"> 비밀번호 확인을 위해 다시 한번 입력해주세요. </td>
 			</tr>
 			<tr>
 				<td> 비밀번호 확인 </td>
@@ -46,9 +68,10 @@ function checkPw()	{
 				<td> <input type ="text" name = "userName" > </td>
 			</tr>
 			<tr>
-				<td> <input type ="button" value = "가입" onclick="checkPw()"> </td>
+				<td colspan="2" align="right"> <input type ="button" value = "가입" onclick="checkPw()"> </td>
 			</tr>
 		</table>
 	</form>
+		</div>
 </body>
 </html>
