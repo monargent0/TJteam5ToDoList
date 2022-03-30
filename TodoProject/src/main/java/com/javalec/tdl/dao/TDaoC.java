@@ -79,6 +79,62 @@ public class TDaoC {
 			}
 		}// finally 메모리 정리 ; 이상 있거나 없거나 무조건 거친다.
 	} //sign up
+	//mypage
+		public void mypage(String userId, String userName) {
+			Connection connection = null;
+			PreparedStatement preparedStatement = null;
+			ResultSet resultSet = null;
+			
+			try {
+				connection = dataSource.getConnection();
+				String query = "select userId from customer where userId = ? and userName = ?";
+				preparedStatement = connection.prepareStatement(query);
+				preparedStatement.setString(1, userId);
+				preparedStatement.setString(2, userName);
+				resultSet = preparedStatement.executeQuery();
+				
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally {
+					try {
+						if(resultSet != null) resultSet.close();
+						if(preparedStatement != null) preparedStatement.close();
+						if(connection != null) connection.close();
+					}catch (Exception e) {
+						e.printStackTrace();
+					}
+			} 
+		} 
+		//logout
+		public void logout(String userId, String userPw) {
+			Connection connection = null;
+			PreparedStatement preparedStatement = null;
+			ResultSet resultSet = null;
+			
+			try {
+				connection = dataSource.getConnection();
+				String query = "select userId from customer where userId = ? and userPw = ?";
+				preparedStatement = connection.prepareStatement(query);
+				preparedStatement.setString(1, userId);
+				preparedStatement.setString(2, userPw);
+				resultSet = preparedStatement.executeQuery();
+				
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally {
+					try {
+						if(resultSet != null) resultSet.close();
+						if(preparedStatement != null) preparedStatement.close();
+						if(connection != null) connection.close();
+					}catch (Exception e) {
+						e.printStackTrace();
+					}
+			} 
+		} 
+		
+	
 	
 
 	// resign
