@@ -11,8 +11,10 @@
 <% 
 	//한글처리 
 	request.setCharacterEncoding("UTF-8");
-	//로그인 처리 > 로그인이 안되면 로그인페이지 이동 
+	
 	String userId = (String) session.getAttribute("userId");
+	String userName = request.getParameter("userName");
+	//로그인 처리 > 로그인이 안되면 로그인페이지 이동 
 	if(userId == null){
 		response.sendRedirect("/login.do");
 	}
@@ -20,21 +22,15 @@
 %>
 
 	<h3>아이디 : <%=userId %></h3>
+	<h3>닉네임 : <%=userName %></h3>
 	
-	<form action="">
+	<form>
 		<input type="button" value="회원탈퇴" class="btn" onclick="location.href='.resign.do'">
+		<input type="button" value="로그아웃" class="btn" onclick="location.href='.logout.do'">
 	</form>
 
 
 
 
-
-<%--내정보 구현 --%>
-<%-- 로그아웃  --%>
-
-
-
-<form action="">
-</form>
 </body>
 </html>
