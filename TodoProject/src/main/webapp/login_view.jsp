@@ -29,13 +29,14 @@
 			</tr>
 			<tr>
 				<td> <input type="submit" value="로그인"> </td>
-			</form>
 			</tr>
+			</form> 
 	 	 	<tr>
  	 	 		<td><form action="signup_view.jsp">
- 	 	 			<input type="submit" value="회원가입"> 
+ 	 	 			<input type="submit" value="회원가입"> </td>
+ 	 	 		
  	 	 		</form> 
- 	 	 		</td>
+ 	 	 		
 	 	 	</tr>
 		</table>
 </body>
