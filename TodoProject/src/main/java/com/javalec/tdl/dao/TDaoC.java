@@ -82,7 +82,7 @@ public class TDaoC {
 	
 
 	// resign
-	public int resign(String userId,String userPw) {
+	public void resign(String userId,String userPw) {
 		int result = -1;
 		
 		Connection connection = null;
