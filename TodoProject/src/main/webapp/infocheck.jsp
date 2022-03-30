@@ -12,7 +12,7 @@
 		
 	}else{
 		session.setAttribute("userId",id);
-		response.sendRedirect("list_view.jsp");
+		response.sendRedirect("/TodoProject/list.do");
 	}
 	
 %>
