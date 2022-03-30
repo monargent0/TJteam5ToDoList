@@ -14,10 +14,9 @@ public class TMypageCommand implements TCommand {
 
 		String userId = request.getParameter("userId");
 		String userName = request.getParameter("userName");
-		String signupDate =request.getParameter("signupDate");
 	
 		TDaoC dao =new TDaoC();
-		dao.mypage(userId,userName,signupDate);
+		dao.mypage(userId,userName);
 	
 		
 	
