@@ -1,23 +1,25 @@
 package com.javalec.tdl.command;
 
+
+
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.javalec.tdl.dao.TDao;
+import com.javalec.tdl.dao.TDaoC;
 
 public class TResignCommand implements TCommand {
 
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-
-		String userId = request.getParameter("userId");
+	public void execute(HttpServletRequest request,HttpServletResponse response) {
+		//세션, 파라미터 정보 가져오기
+		HttpSession session = request.getSession();
+		String userId = (String) session.getAttribute("userId");
 		String userPw = request.getParameter("userPw");
-		String userName = request.getParameter("userName");
 		
-		TDao dao = new TDao();
-		dao.resign(userId,userPw,userName);
+		TDaoC dao = new TDaoC();
+		dao.resign(userId, userPw);
 	}
 	
 
-}
