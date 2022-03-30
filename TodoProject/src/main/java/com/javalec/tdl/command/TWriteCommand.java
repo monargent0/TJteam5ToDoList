@@ -9,13 +9,12 @@ public class TWriteCommand implements TCommand {
 
 	public void execute (HttpServletRequest request, HttpServletResponse response) {
 		String customer_userId = request.getParameter("userId");
-		int listCode = Integer.parseInt(request.getParameter("listCode"));
 		String todoContent = request.getParameter("todoContent");
 		String dDay = request.getParameter("dDay");
 		String importance = request.getParameter("importance");
 		String todoStatus = request.getParameter("todoStatus");
 		
 		TDaoT dao = new TDaoT();
-		dao.write(customer_userId, listCode, todoContent, dDay, importance, todoStatus);
+		dao.write(customer_userId, todoContent, dDay, importance, todoStatus);
 	}
 }

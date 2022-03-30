@@ -35,34 +35,32 @@
 			</td>
 		</tr>
 	</table>
-	<form action="#" method="get">
+	<form method="get">
 		<table border="1">
 			<tr>
 				<th>TODO</th>
 				<th>D-Day</th>
-				<th>IMPORTANCE</th>
 				<th>STATUS</th>
+				<th>ACTION</th>
 			</tr>
-			<c:forEach items="${list}" var="dto">
-				<tr>
-					<td align="center">
-					<input type="submit" value="${dto.todoContent }" name="todoContent">
-					</td>
-					<td align="center">
-					<input type="submit" value="${dto.dDay }" name="dDay">
-					</td>
-					<td align="center">
-					<input type="submit" value="${dto.importance }" name="importance">
-					</td>
-					<td align="center">
-					<input type="submit" value="${dto.todoStatus }" name="todoStatus">
-					</td>
-				</tr>	
+			<c:forEach items="${list }" var="dto">
+			<tr>
+				<td align="center">
+				<input type="text" value="${dto.todoContent }" name="todoContent" formaction="modify.do?listCode=${dto.listCode }">
+				</td>
+				<td align="center">
+				<input type="text" value="${dto.dDay }" name="dDay" formaction="modify.do?listCode=${dto.listCode }">
+				</td>
+				<td align="center">
+				<input type="text" value="${dto.todoStatus }" name="todoStatus" formaction="modify.do?listCode=${dto.listCode }">
+				</td>
+				<td align="center">
+				<a href="modify.do?listCode=${dto.listCode}">수정</a> <a href="delete.do?listCode=${dto.listCode}">삭제</a>
+				</td>
+			</tr>
 			</c:forEach>
-		</table>
-	</form>
-	<form action="write_view.jsp" method="get">
-			<input type="submit" value="+">
+		</table><br>
+			<input type="submit" value="Add" formaction="write_view.jsp">
 	</form>
 </body>
 </html>

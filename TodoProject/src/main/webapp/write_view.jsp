@@ -10,6 +10,10 @@
 	<h2>ADD Todo List</h2>
 		<form action="write.do" method="get">
 			<table border="1">
+				<tr hidden="">
+					<td>userId</td>
+					<td><input type="text" name="userId" value="<%=request.getParameter("userId") %>"></td>
+				</tr>
 				<tr>
 					<td>TODO</td>
 					<td><input type="text" name="todoContent" size="50"></td>
@@ -20,7 +24,7 @@
 				</tr>
 				<tr>	
 					<td>IMPORTANCE</td>
-					<td><input type="checkbox" name="importance" value="important">중요</td>
+					<td><input type="checkbox" name="importance" value="중요">중요</td>
 				</tr>
 				<tr hidden="">
 					<td>STATUS</td>

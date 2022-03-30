@@ -50,7 +50,7 @@ public class TDaoT {
 			}// finally 메모리 정리 ; 이상 있거나 없거나 무조건 거친다.
 	} // delete
 	
-	public ArrayList<TDto> list() {
+	public ArrayList<TDto> list(String customerId) {
 		ArrayList<TDto> dtos = new ArrayList<TDto>();
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -58,22 +58,23 @@ public class TDaoT {
 		
 		try {
 			connection = dataSource.getConnection();
-			String queryA = "select c.userId, t.listCode, t.todoContent, t.dDay, t.todoStatus, t.importance from customer c, ";
-			String queryB = "todos t where t.customer_userId = c.userId";
+			String queryA = "select c.userId, t.listCode, t.todoContent, t.dDay, t.todoStatus from customer c, ";
+			String queryB = "todos t where t.customer_userId = c.userId and t.customer_userId = ?";
 			preparedStatement = connection.prepareStatement(queryA+queryB);
+			preparedStatement.setString(1, customerId);
 			resultSet = preparedStatement.executeQuery();
 			
 			while (resultSet.next()) {
 				String userId = resultSet.getString("userId");
 				int listCode = resultSet.getInt("listCode");
 				String todoContent = resultSet.getString("todoContent");
-				String importance = resultSet.getString("importance");
 				String dDay = resultSet.getString("dDay");
 				String todoStatus = resultSet.getString("todoStatus");
 				
 				TDto dto = new TDto(userId, listCode, todoContent, dDay, todoStatus, importance);
 				dtos.add(dto);
 			}
+			preparedStatement.executeUpdate();
 		} 
 		catch (Exception e) {
 			// TODO: handle exception
@@ -93,21 +94,20 @@ public class TDaoT {
 		return dtos;
 	}
 	
-	public void write(String customer_userId, int listCode, String todoContent, String dDay, String importance, String todoStatus) {
+	public void write(String customer_userId, String todoContent, String dDay, String importance, String todoStatus) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
 		try {
 			connection = dataSource.getConnection();
-			String queryA = "insert into todos (customer_userId, listCode, todoContent, dDay, importance, todoStatus) ";
-			String queryB = "values (?, ?, ?, ?, ?, ?)";
+			String queryA = "insert into todos (customer_userId, todoContent, dDay, importance, todoStatus) ";
+			String queryB = "values (?, ?, ?, ?, ?)";
 			preparedStatement = connection.prepareStatement(queryA+queryB);
 			preparedStatement.setString(1, customer_userId);
-			preparedStatement.setInt(2, listCode);
-			preparedStatement.setString(3, todoContent);
-			preparedStatement.setString(4, dDay);
-			preparedStatement.setString(5, importance);
-			preparedStatement.setString(6, todoStatus);
+			preparedStatement.setString(2, todoContent);
+			preparedStatement.setString(3, dDay);
+			preparedStatement.setString(4, importance);
+			preparedStatement.setString(5, todoStatus);
 			
 			preparedStatement.executeUpdate();
 		} 
