@@ -7,7 +7,7 @@
 	Object id = request.getAttribute("userId");
 	
 	if (id == null){
-		RequestDispatcher rd = request.getRequestDispatcher("login_view.jsp?error=error");
+		RequestDispatcher rd = request.getRequestDispatcher("login_view.jsp");
 		rd.forward(request, response);
 		
 	}else{
