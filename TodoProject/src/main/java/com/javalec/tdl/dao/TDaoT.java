@@ -93,21 +93,20 @@ public class TDaoT {
 		return dtos;
 	}
 	
-	public void write(String customer_userId, int listCode, String todoContent, String dDay, String importance, String todoStatus) {
+	public void write(String customer_userId, String todoContent, String dDay, String importance, String todoStatus) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
 		try {
 			connection = dataSource.getConnection();
-			String queryA = "insert into todos (customer_userId, listCode, todoContent, dDay, importance, todoStatus) ";
-			String queryB = "values (?, ?, ?, ?, ?, ?)";
+			String queryA = "insert into todos (customer_userId, todoContent, dDay, importance, todoStatus) ";
+			String queryB = "values (?, ?, ?, ?, ?)";
 			preparedStatement = connection.prepareStatement(queryA+queryB);
 			preparedStatement.setString(1, customer_userId);
-			preparedStatement.setInt(2, listCode);
-			preparedStatement.setString(3, todoContent);
-			preparedStatement.setString(4, dDay);
-			preparedStatement.setString(5, importance);
-			preparedStatement.setString(6, todoStatus);
+			preparedStatement.setString(2, todoContent);
+			preparedStatement.setString(3, dDay);
+			preparedStatement.setString(4, importance);
+			preparedStatement.setString(5, todoStatus);
 			
 			preparedStatement.executeUpdate();
 		} 
