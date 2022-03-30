@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import javax.websocket.Session;
 
@@ -72,9 +73,10 @@ public class TDaoDT {
 		return dtos;
 	} // list
 	
-	public void write(String todoContent, String dDay, String importance, String todoStatus) {
+	public void write(String todoContent, String dDay, String importance, String todoStatus , String userId) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
+		
 		// todo table
 		try { 
 			connection = dataSource.getConnection();
@@ -108,7 +110,7 @@ public class TDaoDT {
 			
 			preparedStatement = connection.prepareStatement(queryB);
 			preparedStatement.setString(1, todoStatus);
-			preparedStatement.setString(2, );
+			preparedStatement.setString(2, userId);
 			
 			preparedStatement.executeUpdate();
 		} 
