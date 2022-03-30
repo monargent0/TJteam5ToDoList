@@ -15,7 +15,7 @@ import com.javalec.tdl.command.TDeleteCommand;
 import com.javalec.tdl.command.TListCommand;
 import com.javalec.tdl.command.TLoginCommand;
 import com.javalec.tdl.command.TModifyCommand;
-import com.javalec.tdl.command.TMypageCommand;
+//import com.javalec.tdl.command.TMypageCommand;
 import com.javalec.tdl.command.TResignCommand;
 import com.javalec.tdl.command.TSignupCommand;
 import com.javalec.tdl.command.TWriteCommand;
@@ -103,11 +103,11 @@ public class TFrontController extends HttpServlet {
 				break;	
 
 			//my page
-			case("/mypage.do"):
-				command = new TMypageCommand();
-				command.execute(request, response);
-				viewPage = "mypage_view.jsp";
-				break;
+//			case("/mypage.do"):
+//				command = new TMypageCommand();
+//				command.execute(request, response);
+//				viewPage = "mypage_view.jsp";
+//				break;
 	
 			//resign
 			case("/resign.do"):
