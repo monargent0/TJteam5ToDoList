@@ -14,7 +14,6 @@ import com.javalec.tdl.command.TCommand;
 import com.javalec.tdl.command.TDeleteCommand;
 import com.javalec.tdl.command.TListCommand;
 import com.javalec.tdl.command.TLoginCommand;
-import com.javalec.tdl.command.TLogoutCommand;
 import com.javalec.tdl.command.TModifyCommand;
 import com.javalec.tdl.command.TMypageCommand;
 import com.javalec.tdl.command.TResignCommand;
@@ -114,7 +113,7 @@ public class TFrontController extends HttpServlet {
 			case("/resign.do"):
 				 command = new TResignCommand();
 				 command.execute(request, response);
-				 viewPage = "resign.jsp";
+				 viewPage = "user_delete_ok.jsp";
 				 break;
 		}
 		

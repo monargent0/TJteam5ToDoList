@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,16 +49,20 @@
 		<tr>
 		<th colspan="2"><h1>My Page</h1></th>
 		</tr>
+		<c:forEach items="${mypage }" var="dto" >
 		<tr>
-			<td> <h3>아이디 : </h3> </td> <td> <h3> <%=userId %></h3> </td>
+			<td> <h3>아이디 : </h3> </td> 
+			<td> <h3> <input type="text" value="${dto.userId }" name="userId" readonly="readonly"></h3> </td>
 		</tr>
 		<tr>
-			<td> <h3>닉네임 : </h3></td> <td> <h3> <%=userName %> </h3> </td>
+			<td> <h3>닉네임 : </h3></td> 
+			<td> <h3><input type="text" value="${dto.userName }" name="userName" readonly="readonly"> </h3> </td>
 		</tr>
+		</c:forEach>
 		<tr>
 			<form>
 			<td> <input type="button" value="로그아웃" class="btn" onclick="location='logout.jsp'"> </td>
-			<td> <input type="button" value="회원탈퇴" class="btn" onclick="location='resign.jsp"> </td>
+			<td> <input type="button" value="회원탈퇴" class="btn" onclick="location='resign.jsp'"> </td>
 			</form>
 		</tr>
 	</table>
