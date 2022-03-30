@@ -70,7 +70,7 @@
 			</tr>
 			</form>
 			</c:forEach>
-		</table><br>
+		</table>
 		<form>
 			<input type="text" name="userId" value="<%=session.getAttribute("userId") %>" hidden="">
 			<input type="submit" value="+" formaction="write_view.jsp?userId">
