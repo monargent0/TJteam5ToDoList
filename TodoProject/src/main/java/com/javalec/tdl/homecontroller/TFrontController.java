@@ -78,7 +78,7 @@ public class TFrontController extends HttpServlet {
 				command.execute(request, response);
 				viewPage = "infocheck.jsp";
 				break;
-			// write
+			// 작성하기
 			case("/write.do"):
 				command = new TWriteCommand();
 				command.execute(request, response);
@@ -90,8 +90,31 @@ public class TFrontController extends HttpServlet {
 				command.execute(request, response);
 				viewPage = "list.do";
 				break;	
-			
+
+//			//mypage
+//			case("/mypage.do"):
+//				command = new TMypageCommand();
+//				command.execute(request, response);
+//				viewPage = "mypage_view.jsp";
+//				break;
+//	
+//			//logout
+//			case("/logout.do"):
+//				command = new TLogoutCommand();
+//				command.execute(request, response);
+//				viewPage = "mypage_view.jsp";
+//				  break;
+//	
+//			//resign
+//			case("/resign.do"):
+//				 command = new TResignCommand();
+//				 command.execute(request, response);
+//				 viewPage = "resign.jsp";
+//				 break;
 		}
+		
+		
+		
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);
