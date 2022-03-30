@@ -40,7 +40,7 @@
 			<table>
 				<tr>
 				<form action="login.do" method="post">
-					<td> ID : </td>
+					<td align="right"> ID : </td>
 					<td> <input type = "text" name = "userId"> </td>
 				</tr>
 				<tr>
