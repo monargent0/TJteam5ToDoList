@@ -71,7 +71,7 @@ public class TDaoT {
 				String dDay = resultSet.getString("dDay");
 				String todoStatus = resultSet.getString("todoStatus");
 				
-				TDto dto = new TDto(userId, listCode, todoContent, importance, dDay, todoStatus);
+				TDto dto = new TDto(userId, listCode, todoContent, dDay, todoStatus, importance);
 				dtos.add(dto);
 			}
 		} 
@@ -159,4 +159,5 @@ public class TDaoT {
 			}
 		}
 	}
+
 }
