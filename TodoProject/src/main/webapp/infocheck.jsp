@@ -12,7 +12,7 @@
 		
 	}else{
 		session.setAttribute("userId",id);
-		RequestDispatcher rds = request.getRequestDispatcher("/list.do");
+		RequestDispatcher rds = request.getRequestDispatcher("/list.do?userId="+id);
 		rds.forward(request, response);
 	}
 	
