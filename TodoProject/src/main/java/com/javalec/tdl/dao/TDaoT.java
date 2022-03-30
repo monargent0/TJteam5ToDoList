@@ -58,7 +58,7 @@ public class TDaoT {
 		
 		try {
 			connection = dataSource.getConnection();
-			String queryA = "select c.userId, t.listCode, t.todoContent, t.dDay, t.todoStatus, t.importance from customer c, ";
+			String queryA = "select c.userId, t.listCode, t.todoContent, t.dDay, t.todoStatus from customer c, ";
 			String queryB = "todos t where t.customer_userId = c.userId and t.customer_userId = ?";
 			preparedStatement = connection.prepareStatement(queryA+queryB);
 			preparedStatement.setString(1, customerId);
@@ -68,11 +68,10 @@ public class TDaoT {
 				String userId = resultSet.getString("userId");
 				int listCode = resultSet.getInt("listCode");
 				String todoContent = resultSet.getString("todoContent");
-				String importance = resultSet.getString("importance");
 				String dDay = resultSet.getString("dDay");
 				String todoStatus = resultSet.getString("todoStatus");
 				
-				TDto dto = new TDto(userId, listCode, todoContent, importance, dDay, todoStatus);
+				TDto dto = new TDto(userId, listCode, todoContent, dDay, todoStatus);
 				dtos.add(dto);
 			}
 			preparedStatement.executeUpdate();

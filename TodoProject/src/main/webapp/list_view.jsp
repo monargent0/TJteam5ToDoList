@@ -38,30 +38,18 @@
 	<form method="get">
 		<table border="1">
 			<tr>
-				<th>userId</th>
-				<th>listCode</th>
 				<th>TODO</th>
 				<th>D-Day</th>
-				<th>IMPORTANCE</th>
 				<th>STATUS</th>
 				<th>ACTION</th>
 			</tr>
 			<c:forEach items="${list }" var="dto">
 			<tr>
 				<td align="center">
-				<input type="text" value="${dto.userId }" name="userId" size="10" readonly="readonly" style="text-align:center; ">
-				</td>
-				<td align="center">
-				<input type="text" value="${dto.listCode }" name="listCode" size="10" readonly="readonly" style="text-align:center; ">
-				</td>
-				<td align="center">
 				<input type="text" value="${dto.todoContent }" name="todoContent" formaction="modify.do?listCode=${dto.listCode }">
 				</td>
 				<td align="center">
 				<input type="text" value="${dto.dDay }" name="dDay" formaction="modify.do?listCode=${dto.listCode }">
-				</td>
-				<td align="center">
-				<input type="text" value="${dto.importance }" name="importance" formaction="modify.do?listCode=${dto.listCode }">
 				</td>
 				<td align="center">
 				<input type="text" value="${dto.todoStatus }" name="todoStatus" formaction="modify.do?listCode=${dto.listCode }">
@@ -72,8 +60,7 @@
 			</tr>
 			</c:forEach>
 		</table><br>
-			<!-- <input type="submit" value="수정" formaction="modify.do"><br> -->
-			<input type="submit" value="+" formaction="write_view.jsp">
+			<input type="submit" value="Add" formaction="write_view.jsp">
 	</form>
 </body>
 </html>
