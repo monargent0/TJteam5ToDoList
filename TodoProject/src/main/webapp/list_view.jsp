@@ -73,7 +73,7 @@
 			<c:forEach items="${list }" var="dto">
 			<tr>
 				<td align="center">
-				<input type="text" value="${dto.todoContent }" name="todoContent" formaction="modify.do?listCode=${dto.listCode }">
+				<input type="text" value="${dto.todoContent }" name="todoContent" formaction="modify.do?listCode=${dto.listCode}">
 				</td>
 				<td align="center">
 				<input type="text" value="${dto.dDay }" name="dDay" formaction="modify.do?listCode=${dto.listCode }">
@@ -86,16 +86,13 @@
 				</td>
 			</tr>
 			</c:forEach>
-<<<<<<< HEAD
+
 			<tr>
 				<td colspan="4" align="right"><input type="submit" value="+" formaction="write_view.jsp"></td>
 			</tr>
 		</table>
-=======
-		</table><br>
-			<input type="submit" value="Add" formaction="write_view.jsp">
->>>>>>> parent of 49456af (Merge branch 'main' into branchJung)
 	</form>
+	
 </div>
 </body>
 </html>
