@@ -36,12 +36,7 @@
 <div class="list">
 
 	<h1>Todo-List</h1>
-	
-	<form method="get">
 		<table >
-			<tr>
-				<td colspan="4" align="right"> <a href="mypage.do">My Page</a> <a href="logout.jsp">Logout</a> </td>
-			</tr>
 			<tr>
 				<th hidden="">userId</th>
 				<th hidden="">listCode</th>
@@ -50,29 +45,36 @@
 				<th>STATUS</th>
 				<th>ACTION</th>
 			</tr>
-			<c:forEach items="${list }" var="dto" varStatus="status">
+			<c:forEach items="${list }" var="dto">
+			<form method="get">
 			<tr>
-				<td align="center">
-				<input type="text" value="${dto.todoContent }" name="todoContent" formaction="modify.do?listCode=${dto.listCode}">
+				<td align="center" hidden="">
+				<input type="text" value="${dto.userId }" name="userId" size="10" readonly="readonly" style="text-align:center; ">
+				</td>
+				<td align="center" hidden="">
+				<input type="text" value="${dto.listCode }" name="listCode" size="10" readonly="readonly" style="text-align:center; ">
 				</td>
 				<td align="center">
-				<input type="text" value="${dto.dDay }" name="dDay" formaction="modify.do?listCode=${dto.listCode }">
+				<input type="text" value="${dto.todoContent }" name="todoContent">
 				</td>
 				<td align="center">
-				<input type="text" value="${dto.todoStatus }" name="todoStatus" >
+				<input type="date" value="${dto.dDay }" name="dDay">
 				</td>
 				<td align="center">
-				<a href="modify.do?listCode=${dto.listCode}">수정</a> <a href="delete.do?listCode=${dto.listCode}">삭제</a>
+				<input type="checkbox" value="complete" name="todoStatus">complete
+				</td>
+				<td align="center">
+				<input type="submit" value="수정" formaction="modify.do">
+				<input type="submit" value="삭제" formaction="delete.do?listCode=${dto.listCode }">	
 				</td>
 			</tr>
+			</form>
 			</c:forEach>
-
-			<tr>
-				<td colspan="4" align="right"><input type="submit" value="+" formaction="write_view.jsp"></td>
-			</tr>
-		</table>
-	</form>
-	
+		</table><br>
+		<form>
+			<input type="text" name="userId" value="<%=session.getAttribute("userId") %>" hidden="">
+			<input type="submit" value="+" formaction="write_view.jsp?userId">
+		</form>
 </div>
 </body>
 </html>
