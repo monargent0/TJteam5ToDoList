@@ -13,7 +13,7 @@ public class TListCommand implements TCommand {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
-		String customerId = (String) request.getAttribute("userId");
+		String customerId = (String) request.getParameter("userId");
 		TDaoT dao = new TDaoT();
 		ArrayList<TDto> dtos = dao.list(customerId);
 		request.setAttribute("list", dtos);
