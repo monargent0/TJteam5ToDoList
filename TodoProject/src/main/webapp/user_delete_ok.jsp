@@ -3,12 +3,13 @@
     pageEncoding="UTF-8"%>
 <%
 
-	String id = (String)session.getAttribute("userId");
+	String userId = (String) session.getAttribute("userId");
+	String userPw = request.getParameter("userPw");
 
 	TDaoC dao =new TDaoC();
-	boolean check = dao.resign(id);
+	int result = dao.userCheck(userId, userPw);
 	
-	if(check) {		
+	if( result == 1) {		
 		session.invalidate();
 %>
 		<script>
