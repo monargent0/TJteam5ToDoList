@@ -18,49 +18,42 @@
 		</tr>
 	</table>
 	</form>
-	<table>
-		<tr>
-			<td>
-			<select name="category">
-				<option value="검색항목1">검색항목1</option>
-				<option value="검색항목2">검색항목2</option>
-				<option value="검색항목3">검색항목3</option>
-			</select>
-			</td>
-			<td>
-			<input type="text" name="search">
-			</td>
-			<td>
-			<input type="submit" value="검색">
-			</td>
-		</tr>
-	</table>
 	<form method="get">
 		<table border="1">
 			<tr>
+				<th hidden="">userId</th>
+				<th hidden="">listCode</th>
 				<th>TODO</th>
 				<th>D-Day</th>
 				<th>STATUS</th>
 				<th>ACTION</th>
+				
 			</tr>
 			<c:forEach items="${list }" var="dto">
 			<tr>
-				<td align="center">
-				<input type="text" value="${dto.todoContent }" name="todoContent" formaction="modify.do?listCode=${dto.listCode }">
+				<td align="center" hidden="">
+				<input type="text" value="${dto.userId }" name="userId" size="10" readonly="readonly" style="text-align:center; ">
+				</td>
+				<td align="center" hidden="">
+				<input type="text" value="${dto.listCode }" name="listCode" size="10" readonly="readonly" style="text-align:center; ">
 				</td>
 				<td align="center">
-				<input type="text" value="${dto.dDay }" name="dDay" formaction="modify.do?listCode=${dto.listCode }">
+				<input type="text" value="${dto.todoContent }" name="todoContent">
 				</td>
 				<td align="center">
-				<input type="text" value="${dto.todoStatus }" name="todoStatus" formaction="modify.do?listCode=${dto.listCode }">
+				<input type="date" value="${dto.dDay }" name="dDay">
 				</td>
 				<td align="center">
-				<a href="modify.do?listCode=${dto.listCode}">수정</a> <a href="delete.do?listCode=${dto.listCode}">삭제</a>
+				<input type="text" value="${dto.todoStatus }" name="todoStatus">
+				</td>
+				<td align="center">
+				<input type="submit" value="수정" formaction="modify.do">
+				<input type="submit" value="삭제" formaction="delete.do">	
 				</td>
 			</tr>
 			</c:forEach>
 		</table><br>
-			<input type="submit" value="Add" formaction="write_view.jsp">
+			<input type="submit" value="+" formaction="write_view.jsp">
 	</form>
 </body>
 </html>
