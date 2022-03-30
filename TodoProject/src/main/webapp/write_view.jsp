@@ -21,7 +21,7 @@
 				</tr>
 				<tr>	
 					<td>D-DAY</td>
-					<td><input type="date" name="dDay" ></td>
+					<td><input type="date" name="dDay" required="required" ></td>
 				</tr>
 				<tr>	
 					<td>IMPORTANCE</td>
