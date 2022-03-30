@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.javalec.tdl.dao.TDaoDT;
+import com.javalec.tdl.dao.TDaoT;
 import com.javalec.tdl.dto.TDto;
 
 public class TListCommand implements TCommand {
@@ -14,7 +14,7 @@ public class TListCommand implements TCommand {
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		
-		TDaoDT dao = new TDaoDT();
+		TDaoT dao = new TDaoT();
 		ArrayList<TDto> dtos = dao.list();
 		request.setAttribute("list", dtos);
 	}
