@@ -6,8 +6,35 @@
 <head>
 <meta charset="UTF-8">
 <title>Todo List</title>
+<style>
+	  table {
+        border-collapse: collapse;
+        width: auto;
+        height: auto;
+      }
+      
+      table, th, td {
+        padding: 5px;
+       }
+       th{
+       border-top : 1px solid black;
+       border-bottom: 1px solid black;
+       }
+       
+      .list{
+      	position: absolute;
+      	top : 50%;
+      	left : 50%;
+      	transform : translate(-50%,-50%);
+      }
+     
+    
+    </style>
 </head>
 <body>
+
+<div class="list">
+
 	<h1>Todo-List</h1>
 	<form action="list.do" method="get">
 	<table>
@@ -19,7 +46,7 @@
 	</table>
 	</form>
 	<form method="get">
-		<table border="1">
+		<table >
 			<tr>
 				<th hidden="">userId</th>
 				<th hidden="">listCode</th>
@@ -52,8 +79,11 @@
 				</td>
 			</tr>
 			</c:forEach>
-		</table><br>
-			<input type="submit" value="+" formaction="write_view.jsp">
+			<tr>
+				<td colspan="4" align="right"><input type="submit" value="+" formaction="write_view.jsp"></td>
+			</tr>
+		</table>
 	</form>
+</div>
 </body>
 </html>
