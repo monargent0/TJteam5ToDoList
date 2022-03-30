@@ -11,10 +11,9 @@ public class TWriteCommand implements TCommand {
 		String customer_userId = request.getParameter("userId");
 		String todoContent = request.getParameter("todoContent");
 		String dDay = request.getParameter("dDay");
-		String importance = request.getParameter("importance");
 		String todoStatus = request.getParameter("todoStatus");
 		
 		TDaoT dao = new TDaoT();
-		dao.write(customer_userId, todoContent, dDay, importance, todoStatus);
+		dao.write(customer_userId, todoContent, dDay, todoStatus);
 	}
 }

@@ -12,10 +12,9 @@ public class TModifyCommand implements TCommand {
 		int listCode = Integer.parseInt(request.getParameter("listCode"));
 		String todoContent = request.getParameter("todoContent");
 		String dDay = request.getParameter("dDay");
-		String importance = request.getParameter("important");
-		String status = request.getParameter("status");
+		String todoStatus = request.getParameter("todoStatus");
 		
 		TDaoT dao = new TDaoT();	
-		dao.modify(listCode, todoContent, dDay, importance, status);
+		dao.modify(listCode, todoContent, dDay, todoStatus);
 		}
 }
