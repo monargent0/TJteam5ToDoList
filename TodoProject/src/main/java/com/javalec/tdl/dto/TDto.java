@@ -1,26 +1,35 @@
 package com.javalec.tdl.dto;
 
-import java.sql.Date;
 
 public class TDto {
 
+	String userId;
 	int listCode;
 	String todoContent;
 	String importance;
-	Date dDay;
+	String dDay;
 	String todoStatus;
 	
 	public TDto() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public TDto(int listCode, String todoContent, String importance, Date dDay, String todoStatus) {
+	public TDto(String userId, int listCode, String todoContent, String importance, String dDay, String todoStatus) {
 		super();
+		this.userId = userId;
 		this.listCode = listCode;
 		this.todoContent = todoContent;
 		this.importance = importance;
 		this.dDay = dDay;
 		this.todoStatus = todoStatus;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public int getListCode() {
@@ -47,11 +56,11 @@ public class TDto {
 		this.importance = importance;
 	}
 
-	public Date getdDay() {
+	public String getdDay() {
 		return dDay;
 	}
 
-	public void setdDay(Date dDay) {
+	public void setdDay(String dDay) {
 		this.dDay = dDay;
 	}
 
