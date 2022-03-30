@@ -9,7 +9,6 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import com.javalec.tdl.dto.TDto;
 import com.javalec.tdl.dto.TDtoM;
 
 public class TDaoC {
@@ -84,27 +83,27 @@ public class TDaoC {
 		}// finally 메모리 정리 ; 이상 있거나 없거나 무조건 거친다.
 	} //sign up
 	
-	//mypage
-	public ArrayList<TDtoM> mypage(String userId) {
-		ArrayList<TDtoM> dtos = new ArrayList<TDtoM>();
+	//my page
+	public ArrayList<TDtoM> mypage(String loginId) {
+		ArrayList<TDtoM> dtosM = new ArrayList<TDtoM>();
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
 			
 		try {
 			connection = dataSource.getConnection();
-			String query = "select userId, userName from customer where userId = ? ";
+			String query = "select userId, userName from customer where userId = ?";
 			preparedStatement = connection.prepareStatement(query);
-			preparedStatement.setString(1, userId);
+			preparedStatement.setString(1, loginId);
 			
 			resultSet = preparedStatement.executeQuery();
 			
-			if (resultSet.next()) {
-				String id = resultSet.getString("userId");
-				String name = resultSet.getString("userName");
+			while (resultSet.next()) {
+				String userId = resultSet.getString("userId");
+				String userName = resultSet.getString("userName");
 				
-				TDtoM dto = new TDtoM(id, name);
-				dtos.add(dto);
+				TDtoM dtoM = new TDtoM(userId, userName);
+				dtosM.add(dtoM);
 			}
 				
 				
@@ -119,7 +118,7 @@ public class TDaoC {
 					e.printStackTrace();
 				}
 			} 
-		return dtos;
+		return dtosM;
 		} 
 
 	

@@ -1,0 +1,94 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap');
+
+	body {
+	  font-family: 'Nanum Brush Script', cursive;
+	  font-size: 24px;
+	}
+	
+	input {
+	  text-align: center;
+	  font-family: 'Nanum Brush Script', cursive;
+	  font-size: 20px;  
+	}
+	
+	table {
+        border-collapse: collapse;
+        width: auto;
+        height: auto;
+    }
+      
+    th{
+       border-top : 1px solid black;
+       border-bottom: 1px solid black;
+    }
+    
+ 	table, th, td {
+       padding: 5px;
+    }
+    
+    /* list_view */   
+    .position{
+     	position: absolute;
+      	top : 50%;
+      	left : 50%;
+      	transform : translate(-50%,-50%);
+    }
+    #notice{
+    	font-size: 17px;
+    	color: blue;
+    }
+    /* 일정추가 폼 */
+    #todoC {
+     text-align: left;
+     border: 0;
+     border-bottom: 2px solid black;
+    }
+    #todoD {
+     text-align: right;
+     border: 0;
+     border-bottom: 2px solid black;
+    }
+    
+    /* read only 테두리 없애기 */
+    #read {
+	  border: 0;
+	 /*  box-shadow: none; */
+	  font-size: 30px;  
+	  font-weight: bold;
+	}
+    #todo {
+	  border: 0;
+	  font-weight: bold;
+	}
+	
+    /* button style */
+    #sub {
+	    font-family: 'Nanum Brush Script', cursive;
+	    font-weight: bold;
+	    text-align: center;
+	    background-color: white;
+	    border-color: gray;
+	    border-style: collapse; /* solid */
+	    border-radius: 15px;
+	}
+	
+	#log {
+	    font-family: 'Nanum Brush Script', cursive;
+	    font-weight: bold;
+	    text-align: center;
+	    background-color: white;
+	    border-color: skyblue;
+	    border-style: collapse; /* solid */
+	    border-radius: 15px;
+	}
+	 #add {
+	    font-family: 'Nanum Brush Script', cursive;
+	    font-weight: bold;
+	    text-align: center;
+	    background-color: lightblue;
+	    border-color: skyblue;
+	    border-style: solid; /* solid */
+	    border-radius: 15px;
+	   
+		}

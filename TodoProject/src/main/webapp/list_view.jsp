@@ -6,34 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Todo List</title>
-<style>
-	  table {
-        border-collapse: collapse;
-        width: auto;
-        height: auto;
-      }
-      
-      table, th, td {
-        padding: 5px;
-       }
-       th{
-       border-top : 1px solid black;
-       border-bottom: 1px solid black;
-       }
-       
-      .list{
-      	position: absolute;
-      	top : 50%;
-      	left : 50%;
-      	transform : translate(-50%,-50%);
-      }
-     
-    
-    </style>
+<link rel="stylesheet" href="./style.css">
+
 </head>
 <body>
 
-<div class="list">
+<div class="position">
 
 	<h1>Todo-List</h1>
 		<table >
@@ -58,26 +36,26 @@
 				<input type="text" value="${dto.listCode }" name="listCode" size="10" readonly="readonly" style="text-align:center; ">
 				</td>
 				<td align="center">
-				<input type="text" value="${dto.todoContent }" name="todoContent">
+				<input id = "todo" type="text" value="${dto.todoContent }" name="todoContent">
 				</td>
 				<td align="center">
-				<input type="date" value="${dto.dDay }" name="dDay">
+				<input id = "todo" type="date" value="${dto.dDay }" name="dDay">
 				</td>
 				<td align="center">
 				<input type="checkbox" value="complete" name="todoStatus">complete
 				</td>
 				<td align="center">
-				<input type="submit" value="수정" formaction="modify.do">
-				<input type="submit" value="삭제" formaction="delete.do?listCode=${dto.listCode }">	
+				<input id="sub" type="submit" value="수정" formaction="modify.do">
+				<input id="sub" type="submit" value="삭제" formaction="delete.do?listCode=${dto.listCode }">	
 				</td>
 			</tr>
 			</form>
 			</c:forEach>
 			<tr>
-				<td >
+				<td colspan="6" align="center">
 				<form>
 					<input type="text" name="userId" value="<%=session.getAttribute("userId") %>" hidden="">
-					<input type="submit" value="+" formaction="write_view.jsp?userId">
+					<input id="add" type="submit" value="+" formaction="write_view.jsp?userId">
 				</form>
 				</td>
 			</tr>
