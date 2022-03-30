@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="UTF-8">
 <title>Todo List ADD</title>
@@ -12,7 +13,7 @@
 			<table border="1">
 				<tr hidden="">
 					<td>userId</td>
-					<td><input type="text" name="userId" value="<%=request.getParameter("userId") %>"></td>
+					<td><input type="text" name="userId" value="<%=session.getAttribute("userId") %>"></td>
 				</tr>
 				<tr>
 					<td>TODO</td>
@@ -20,7 +21,7 @@
 				</tr>
 				<tr>	
 					<td>D-DAY</td>
-					<td><input type="date" name="dDay"></td>
+					<td><input type="date" name="dDay" ></td>
 				</tr>
 				<tr>	
 					<td>IMPORTANCE</td>

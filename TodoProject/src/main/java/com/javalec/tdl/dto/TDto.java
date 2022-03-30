@@ -6,7 +6,6 @@ public class TDto {
 	String userId;
 	int listCode;
 	String todoContent;
-	String importance;
 	String dDay;
 	String todoStatus;
 	
@@ -14,12 +13,11 @@ public class TDto {
 		// TODO Auto-generated constructor stub
 	}
 
-	public TDto(String userId, int listCode, String todoContent, String importance, String dDay, String todoStatus) {
+	public TDto(String userId, int listCode, String todoContent, String dDay, String todoStatus) {
 		super();
 		this.userId = userId;
 		this.listCode = listCode;
 		this.todoContent = todoContent;
-		this.importance = importance;
 		this.dDay = dDay;
 		this.todoStatus = todoStatus;
 	}
@@ -46,14 +44,6 @@ public class TDto {
 
 	public void setTodoContent(String todoContent) {
 		this.todoContent = todoContent;
-	}
-
-	public String getImportance() {
-		return importance;
-	}
-
-	public void setImportance(String importance) {
-		this.importance = importance;
 	}
 
 	public String getdDay() {
