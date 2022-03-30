@@ -45,44 +45,56 @@
 		</tr>
 	</table>
 	</form>
+	<table>
+		<tr>
+			<td>
+			<select name="category">
+				<option value="검색항목1">검색항목1</option>
+				<option value="검색항목2">검색항목2</option>
+				<option value="검색항목3">검색항목3</option>
+			</select>
+			</td>
+			<td>
+			<input type="text" name="search">
+			</td>
+			<td>
+			<input type="submit" value="검색">
+			</td>
+		</tr>
+	</table>
 	<form method="get">
 		<table >
 			<tr>
-				<th hidden="">userId</th>
-				<th hidden="">listCode</th>
 				<th>TODO</th>
 				<th>D-Day</th>
 				<th>STATUS</th>
 				<th>ACTION</th>
-				
 			</tr>
 			<c:forEach items="${list }" var="dto">
 			<tr>
-				<td align="center" hidden="">
-				<input type="text" value="${dto.userId }" name="userId" size="10" readonly="readonly" style="text-align:center; ">
-				</td>
-				<td align="center" hidden="">
-				<input type="text" value="${dto.listCode }" name="listCode" size="10" readonly="readonly" style="text-align:center; ">
+				<td align="center">
+				<input type="text" value="${dto.todoContent }" name="todoContent" formaction="modify.do?listCode=${dto.listCode }">
 				</td>
 				<td align="center">
-				<input type="text" value="${dto.todoContent }" name="todoContent">
+				<input type="text" value="${dto.dDay }" name="dDay" formaction="modify.do?listCode=${dto.listCode }">
 				</td>
 				<td align="center">
-				<input type="date" value="${dto.dDay }" name="dDay">
+				<input type="text" value="${dto.todoStatus }" name="todoStatus" formaction="modify.do?listCode=${dto.listCode }">
 				</td>
 				<td align="center">
-				<input type="text" value="${dto.todoStatus }" name="todoStatus">
-				</td>
-				<td align="center">
-				<input type="submit" value="수정" formaction="modify.do">
-				<input type="submit" value="삭제" formaction="delete.do">	
+				<a href="modify.do?listCode=${dto.listCode}">수정</a> <a href="delete.do?listCode=${dto.listCode}">삭제</a>
 				</td>
 			</tr>
 			</c:forEach>
+<<<<<<< HEAD
 			<tr>
 				<td colspan="4" align="right"><input type="submit" value="+" formaction="write_view.jsp"></td>
 			</tr>
 		</table>
+=======
+		</table><br>
+			<input type="submit" value="Add" formaction="write_view.jsp">
+>>>>>>> parent of 49456af (Merge branch 'main' into branchJung)
 	</form>
 </div>
 </body>
