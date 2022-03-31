@@ -6,35 +6,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="./style.css">
 <title> TodoList 회원가입 </title>
-<style>
-	  table {
-        border-collapse: collapse;
-        width: auto;
-        height: auto;
-      }
-      
-      table, th, td {
-        padding: 5px;
-       }
-      
-       
-      .sign{
-      	position: absolute;
-      	top : 50%;
-      	left : 50%;
-      	transform : translate(-50%,-50%);
-      }
-      #sub {
-	    font-family: 'Nanum Brush Script', cursive;
-	    font-weight: bold;
-	    text-align: center;
-	    background-color: white;
-	    border-color: gray;
-	    border-style: collapse; /* solid */
-	    border-radius: 15px;
-		}
-    
-    </style>
+
 </head>
 <script type="text/javascript">
 function checkPw()	{
@@ -52,7 +24,7 @@ function checkPw()	{
 </script>
 
 <body>
-	<div class="sign">
+	<div class="position">
 
 	<h1>환영합니다!</h1>
 	<form action="signup.do" method="post" name="signup" >

@@ -67,7 +67,8 @@
 	    font-family: 'Nanum Brush Script', cursive;
 	    font-weight: bold;
 	    text-align: center;
-	    background-color: white;
+	    color: white;
+	    background-color: black;
 	    border-color: gray;
 	    border-style: collapse; /* solid */
 	    border-radius: 15px;
@@ -77,8 +78,9 @@
 	    font-family: 'Nanum Brush Script', cursive;
 	    font-weight: bold;
 	    text-align: center;
-	    background-color: white;
-	    border-color: skyblue;
+	    color: white;
+	    background-color: black;
+	    border-color: gray;
 	    border-style: collapse; /* solid */
 	    border-radius: 15px;
 	}
