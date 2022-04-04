@@ -7,15 +7,12 @@
 <link rel="stylesheet" href="./style.css">
 
 <title>ToDoList Login</title>
-
 </head>
-
 <body>
-	
-	
-		<div class="position">
+
+	<div class="position">
 		<center><h1>Welcome to ToDoList</h1></center>	
-		<center>
+			<center>
 			<table>
 				<tr>
 				<form action="login.do" method="post">
@@ -34,12 +31,12 @@
 	 	 	 			<input id="log" type="submit" value="회원가입"> 
 	 	 	 			</form> 
 	 	 	 		</td>
-	 	 	 		
-	 	 	 		
 		 	 	</tr>
 			</table>
-		</center>
-		</div>
+			</center>
+	</div>
+	
 </body>
+
 
 </html>
