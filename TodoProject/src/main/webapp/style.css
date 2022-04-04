@@ -38,6 +38,10 @@
     	font-size: 17px;
     	color: blue;
     }
+    #idWarning{
+    	font-size: 16px;
+    	color: blue;
+    }
     /* 일정추가 폼 */
     #todoC {
      text-align: left;
