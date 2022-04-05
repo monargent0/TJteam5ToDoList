@@ -1,4 +1,4 @@
- <!--  <Resource
+<!--  <Resource
     	name = "jdbc/todolist"
     	auth = "Container"
     	type = "javax.sql.DataSource"
