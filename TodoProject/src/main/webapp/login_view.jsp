@@ -8,6 +8,7 @@
 
 <title>ToDoList Login</title>
 </head>
+
 <body>
 
 	<div class="position">
@@ -37,6 +38,5 @@
 	</div>
 	
 </body>
-
 
 </html>
