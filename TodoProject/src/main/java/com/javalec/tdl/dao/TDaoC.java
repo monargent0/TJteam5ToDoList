@@ -148,7 +148,7 @@ public class TDaoC {
 					e.printStackTrace();
 	 			}
 			}
-		}//delete닫힘
+		}//resign
 
 	
 }
