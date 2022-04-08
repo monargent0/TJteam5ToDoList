@@ -35,7 +35,7 @@ function checkPw()	{
 			</tr>
 			<tr>
 				<td> 비밀번호 </td>
-				<td> <input id="todoC" type = "password" name ="userPw"> </td>
+				<td> <input id="todoC" type = "password" name ="userPw" maxlength="15"> </td>
 			</tr>
 			<tr>
 				<td id = "notice" colspan="2" align="center"> &nbsp; 비밀번호 확인을 위해 다시 한번 입력해주세요. </td>
