@@ -3,5 +3,5 @@
     pageEncoding="UTF-8"%>
 		<script>
 			alert("회원 탈퇴가 정상처리되었습니다.");
-			location.href='/login_view.jsp';
+			location.href='login_view.jsp';
 		</script>

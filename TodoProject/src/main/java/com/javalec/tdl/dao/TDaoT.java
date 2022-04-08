@@ -133,7 +133,7 @@ public class TDaoT {
 		
 		try {
 			connection = dataSource.getConnection();
-			String query = "update todos set todoContent = ?, dDay = ?, todoStatus = ?, modifyDate = now() where listCode = ?;";
+			String query = "update todos set todoContent = ?, dDay = ?, todoStatus = ?, modifyDate = now() where listCode = ?";
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setString(1, todoContent);
 			preparedStatement.setString(2, dDay);

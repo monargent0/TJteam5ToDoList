@@ -33,7 +33,7 @@ public class TDaoC {
 		
 		try {
 			connection = dataSource.getConnection();
-			String query = "select userId from customer where userId = ? and userPw = ?";
+			String query = "select userId from customer where userId = ? and userPw = ? and resignDate is null";
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setString(1, userId);
 			preparedStatement.setString(2, userPw);
@@ -124,8 +124,8 @@ public class TDaoC {
 	
 	
 		// resign
-		public int resign(String userId) {
-			int result = 0;
+		public void resign(String userId) {
+			
 			Connection connection = null;
 			PreparedStatement preparedStatement = null;
 			
@@ -133,11 +133,11 @@ public class TDaoC {
 				//DB연결메서드 불러오기
 				connection = dataSource.getConnection(); 
 				//pstmt 생성
-				String query = "delete from customer where userId = ?";
+				String query = "update customer set resignDate = now() where userId = ? " ;
 				preparedStatement = connection.prepareStatement(query);
 				preparedStatement.setString(1, userId);
 				//실행 
-				result = preparedStatement.executeUpdate();
+				preparedStatement.executeUpdate();
 			} catch (Exception e) {
 				e.printStackTrace();
 			} finally { 
@@ -148,8 +148,7 @@ public class TDaoC {
 					e.printStackTrace();
 	 			}
 			}
-			return result;
-		}//delete닫힘
+		}//resign
 
 	
 }

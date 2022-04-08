@@ -9,6 +9,7 @@
 
 </head>
 <script type="text/javascript">
+
 function checkPw()	{
 		var form = document.signup
 		var userPw = form.userPw.value
@@ -21,6 +22,24 @@ function checkPw()	{
 		}
 	    form.submit()
 }
+
+function checkID(){
+	let id = document.getElementById("todoC").value;
+	let warning = document.getElementById("idWarning");
+	var regExpID = /^[0-9a-zA-Z]*$/
+	
+	if(!regExpID.test(id)){
+		warning.innerHTML = "영어 대소문자와 숫자만 입력 가능합니다.";
+	}
+	if(id.length < 3){
+		warning.innerHTML = "아이디를 3글자 이상으로 입력해주세요";
+	} 
+}
+
+function typingID(){
+	let warning = document.getElementById("idWarning");
+	warning.innerHTML = "";
+}
 </script>
 
 <body>
@@ -31,7 +50,10 @@ function checkPw()	{
 		<table>
 			<tr>
 				<td> 아이디 </td> 
-				<td> <input id="todoC" type = "text" name ="userId"> </td>
+				<td> <input id="todoC" type = "text" name ="userId" onBlur="checkID()" onkeydown="typingID()"> </td>
+			</tr>
+			<tr>
+				<td id="idWarning" colspan="2"></td>
 			</tr>
 			<tr>
 				<td> 비밀번호 </td>
