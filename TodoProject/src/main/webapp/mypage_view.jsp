@@ -18,6 +18,7 @@
 		response.sendRedirect("login_view.jsp");
 	}
 %>
+
 	<div class="position">
 	<table>
 		<tr>
